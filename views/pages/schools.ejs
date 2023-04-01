@@ -1,8 +1,22 @@
 <%- include ('../partials/header') %>
 
 <h1>My schools</h1>
-<p>ALL SCHOOL DATA: <%- JSON.stringify(schools) %></p>
-<p>school data: <%- JSON.stringify(schools.rows) %></p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Active</th>
+        <th>Last Updated</th>
+    </tr>
+    <% for(let i = 0; i < schools.rows.length; i++) { %>
+    <tr>
+        <td><%= schools.rows[i].id %></td>
+        <td><%= schools.rows[i].name %></td>
+        <td><%= schools.rows[i].active %></td>
+        <td><%= schools.rows[i].last_updated %></td>
+    </tr>
+    <% } %>
+</table>
 
 
 <%- include('../partials/footer') %>
