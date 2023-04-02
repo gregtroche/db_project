@@ -2,34 +2,50 @@
 
 <h1>My schools</h1>
 <table>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Active</th>
-        <th>Last Updated</th>
-    </tr>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Active</th>
+            <th>Last Updated</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+   <tbody>
     <% for(let i = 0; i < schools.rows.length; i++) { %>
-    <tr>
-        <td><%= schools.rows[i].id %></td>
-        <td><%= schools.rows[i].name %></td>
-        <td><%= schools.rows[i].active %></td>
-        <td><%= schools.rows[i].last_updated %></td>
-    </tr>
-    <% } %>
+        <tr>
+            <td><%= schools.rows[i].id %></td>
+            <td><%= schools.rows[i].name %></td>
+            <td><%= schools.rows[i].active %></td>
+            <td><%= schools.rows[i].last_updated %></td>
+            <td>
+                <form action="" method="POST">
+                    <input type="hidden" name="submissionType" value="delete">
+                    <input type="hidden" name="schoolId" value="<%- schools.rows[i].id %>">
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+        <% } %>
+   </tbody>
 </table>
 
-<form action="" method="POST">
-    <fieldset id="create-form">
-        <legend>Add a new school</legend>
-            <label for="school-name-create">School Name:</label><br />
-            <input type="text" id="school-name-create" name="schoolName" required><br />
-            <input type="radio" id="is-active-create" name="active" value="true" required>
-            <label for="is-active-create">Active</label><br />
-            <input type="radio" id="is-inactive-create" name="active" value="false">
-            <label for="is-active-create">Inactive</label><br />
-            <input type="submit" value="Submit">
-    </fieldset>
-</form>
+<div id="create-form-block">
+    <form action="" method="POST">
+        <fieldset id="create-form">
+            <legend>Add a new school</legend>
+                <label for="school-name-create">School Name:</label><br />
+                <input type="text" id="school-name-create" name="schoolName" required><br />
+                <input type="radio" id="is-active-create" name="active" value="true" required>
+                <label for="is-active-create">Active</label><br />
+                <input type="radio" id="is-inactive-create" name="active" value="false">
+                <label for="is-active-create">Inactive</label><br />
+                <input type="hidden" name="submissionType" value="create">
+                <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+</div>
+
 
 
 <%- include('../partials/footer') %>
