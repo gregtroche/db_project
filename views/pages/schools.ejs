@@ -1,6 +1,6 @@
 <%- include ('../partials/header') %>
 
-<h1>My schools</h1>
+<h1>Schools</h1>
 <table>
     <thead>
         <tr>
@@ -41,6 +41,24 @@
                 <input type="radio" id="is-inactive-create" name="active" value="false">
                 <label for="is-active-create">Inactive</label><br />
                 <input type="hidden" name="submissionType" value="create">
+                <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+</div>
+
+<div id="update-form-block">
+    <form action="" method="POST">
+        <fieldset id="update-form">
+            <legend>Update an Existing School</legend>
+                <label for="school-id-update">ID:</label><br />
+                <input type="text" id="school-id-update" name="schoolId" required><br />
+                <label for="school-name-update">School Name:</label><br />
+                <input type="text" id="school-name-update" name="schoolName" required><br />
+                <input type="radio" id="is-active-update" name="active" value="true" required>
+                <label for="is-active-update">Active</label><br />
+                <input type="radio" id="is-inactive-update" name="active" value="false">
+                <label for="is-active-update">Inactive</label><br />
+                <input type="hidden" name="submissionType" value="update">
                 <input type="submit" value="Submit">
         </fieldset>
     </form>

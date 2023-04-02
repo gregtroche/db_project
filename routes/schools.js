@@ -17,32 +17,33 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req,res) => {
-    if(req.body.submissionType === 'create'){
+    if(req.body.submissionType === 'create'){ 
         const createQuery = `INSERT INTO schools (name, active, last_updated) VALUES('${req.body.schoolName}', ${req.body.active}, now());`;
         const submission = database.query(createQuery);
         submission.then(function(result){
             console.log('Submission Successful!')
         });
-
-        const readAllQuery = 'SELECT * FROM schools';
-        const data = database.query(readAllQuery);
-        data.then(function(result){
-        res.render('../views/pages/schools', {schools: result})
-        });
     }
-    else if(req.body.submissionType === 'delete'){
+
+    else if(req.body.submissionType === 'delete'){ 
         const deleteQuery = `DELETE FROM schools WHERE id=${req.body.schoolId};`;
         const deleteItem = database.query(deleteQuery);
         deleteItem.then(function(result){
             console.log('Row Successfully Deleted!')
         });
-
-        const readAllQuery = 'SELECT * FROM schools';
-        const data = database.query(readAllQuery);
-        data.then(function(result){
-        res.render('../views/pages/schools', {schools: result})
-        });
     }
+
+    else if(req.body.submissionType === 'update'){
+        const updateQuery = `UPDATE schools SET name='${req.body.schoolName}', active=${req.body.active}, last_updated=now() WHERE id=${req.body.schoolId};`;
+        const updateItem = database.query(updateQuery);
+        updateItem.then(function(result){
+            console.log('Row Successfully Updated!')
+        });
+        console.log(req.body)
+        console.log(updateQuery)
+    }
+
+    res.redirect('back');
 })
 
 module.exports = router;
