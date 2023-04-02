@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
     res.send({ 'message':'Endpoint Working' });
 });
 
-app.get('/school', (req, res) => {
+app.get('/schools', (req, res) => {
     const readAllQuery = 'SELECT * FROM schools';
     const data = database.query(readAllQuery);
     data.then(function(result){
