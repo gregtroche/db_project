@@ -18,5 +18,18 @@
     <% } %>
 </table>
 
+<form action="" method="POST">
+    <fieldset id="create-form">
+        <legend>Add a new school</legend>
+            <label for="school-name-create">School Name:</label><br />
+            <input type="text" id="school-name-create" name="schoolName" required><br />
+            <input type="radio" id="is-active-create" name="active" value="true" required>
+            <label for="is-active-create">Active</label><br />
+            <input type="radio" id="is-inactive-create" name="active" value="false">
+            <label for="is-active-create">Inactive</label><br />
+            <input type="submit" value="Submit">
+    </fieldset>
+</form>
+
 
 <%- include('../partials/footer') %>

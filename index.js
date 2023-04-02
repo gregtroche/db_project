@@ -1,22 +1,16 @@
-const express = require('express');
-const database = require('./database');
-const app = express();
-app.set('view engine', 'ejs');
-
-
 const PORT = 8080;
+const   express = require('express'),
+        app = express(),
+        schools = require('./routes/schools')
+
+app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
     res.send({ 'message':'Endpoint Working' });
 });
 
-app.get('/schools', (req, res) => {
-    const readAllQuery = 'SELECT * FROM schools';
-    const data = database.query(readAllQuery);
-    data.then(function(result){
-        res.render('pages/schools', {schools: result})
-    })
-})
+
+app.use('/schools', schools)
 
 app.listen(PORT, () => {
     console.log(`Server Running at: http://localhost:${PORT}/`);
