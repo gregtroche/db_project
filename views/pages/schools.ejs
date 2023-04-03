@@ -32,55 +32,59 @@
     </table>
 
     <div class="row">
-        <div class="col-md-6">
-            <div id="create-form-block">
-                <form action="" method="POST">
-                    <fieldset id="create-form">
-                        <legend>Add a new school</legend>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="school-name-create">School Name:</label><br />
-                                    <input type="text" id="school-name-create" name="schoolName" required><br />
+        <div class="col">
+            <div class="rounded bg-light p-3">
+                <div id="create-form-block">
+                    <form action="" method="POST">
+                        <fieldset id="create-form">
+                            <legend>Add a new school</legend>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="school-name-create">School Name:</label><br />
+                                        <input type="text" id="school-name-create" name="schoolName" required><br />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="radio" id="is-active-create" name="active" value="true" required>
+                                        <label for="is-active-create">Active</label><br />
+                                        <input type="radio" id="is-inactive-create" name="active" value="false">
+                                        <label for="is-active-create">Inactive</label><br />  
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <input type="radio" id="is-active-create" name="active" value="true" required>
-                                    <label for="is-active-create">Active</label><br />
-                                    <input type="radio" id="is-inactive-create" name="active" value="false">
-                                    <label for="is-active-create">Inactive</label><br />  
-                                </div>
-                            </div>
-                            <input type="hidden" name="submissionType" value="create">
-                            <input class="btn btn-primary mt-3" type="submit" value="Submit">
-                    </fieldset>
-                </form>
+                                <input type="hidden" name="submissionType" value="create">
+                                <input class="btn btn-primary mt-3" type="submit" value="Submit">
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
-
-        <div class="col-md-6">
-            <div id="update-form-block">
-                <form action="" method="POST">
-                    <fieldset id="update-form">
-                        <legend>Update an Existing School</legend>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="school-id-update">ID:</label><br />
-                                    <input type="text" id="school-id-update" name="schoolId" required><br />
+        
+        <div class="col">
+            <div class="rounded bg-light p-3">
+                <div id="update-form-block">
+                    <form action="" method="POST">
+                        <fieldset id="update-form">
+                            <legend>Update an Existing School</legend>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="school-id-update">ID:</label><br />
+                                        <input type="text" id="school-id-update" name="schoolId" required><br />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="school-name-update">School Name:</label><br />
+                                        <input type="text" id="school-name-update" name="schoolName" required><br />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="radio" id="is-active-update" name="active" value="true" required>
+                                        <label for="is-active-update">Active</label><br />
+                                        <input type="radio" id="is-inactive-update" name="active" value="false">
+                                        <label for="is-active-update">Inactive</label><br />
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="school-name-update">School Name:</label><br />
-                                    <input type="text" id="school-name-update" name="schoolName" required><br />
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="radio" id="is-active-update" name="active" value="true" required>
-                                    <label for="is-active-update">Active</label><br />
-                                    <input type="radio" id="is-inactive-update" name="active" value="false">
-                                    <label for="is-active-update">Inactive</label><br />
-                                </div>
-                            </div>
-                            <input type="hidden" name="submissionType" value="update">
-                            <input class="btn btn-primary mt-3" type="submit" value="Submit">
-                    </fieldset>
-                </form>
+                                <input type="hidden" name="submissionType" value="update">
+                                <input class="btn btn-primary mt-3" type="submit" value="Submit">
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
