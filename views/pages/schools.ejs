@@ -18,7 +18,7 @@
                     <td><%= schools.rows[i].id %></td>
                     <td><%= schools.rows[i].name %></td>
                     <td><%= schools.rows[i].active %></td>
-                    <td><%= schools.rows[i].last_updated %></td>
+                    <td><%= schools.rows[i].last_updated.toString().split("GMT")[0] %></td>
                     <td>
                         <form action="" method="POST">
                             <input type="hidden" name="submissionType" value="delete">
