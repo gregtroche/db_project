@@ -1,67 +1,89 @@
 <%- include ('../partials/header') %>
 
-<h1>Schools</h1>
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Active</th>
-            <th>Last Updated</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-   <tbody>
-    <% for(let i = 0; i < schools.rows.length; i++) { %>
-        <tr>
-            <td><%= schools.rows[i].id %></td>
-            <td><%= schools.rows[i].name %></td>
-            <td><%= schools.rows[i].active %></td>
-            <td><%= schools.rows[i].last_updated %></td>
-            <td>
+<div class="container">
+    <h1>Schools</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Active</th>
+                <th>Last Updated</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = 0; i < schools.rows.length; i++) { %>
+                <tr>
+                    <td><%= schools.rows[i].id %></td>
+                    <td><%= schools.rows[i].name %></td>
+                    <td><%= schools.rows[i].active %></td>
+                    <td><%= schools.rows[i].last_updated %></td>
+                    <td>
+                        <form action="" method="POST">
+                            <input type="hidden" name="submissionType" value="delete">
+                            <input type="hidden" name="schoolId" value="<%- schools.rows[i].id %>">
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div id="create-form-block">
                 <form action="" method="POST">
-                    <input type="hidden" name="submissionType" value="delete">
-                    <input type="hidden" name="schoolId" value="<%- schools.rows[i].id %>">
-                    <input type="submit" value="Delete">
+                    <fieldset id="create-form">
+                        <legend>Add a new school</legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="school-name-create">School Name:</label><br />
+                                    <input type="text" id="school-name-create" name="schoolName" required><br />
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="radio" id="is-active-create" name="active" value="true" required>
+                                    <label for="is-active-create">Active</label><br />
+                                    <input type="radio" id="is-inactive-create" name="active" value="false">
+                                    <label for="is-active-create">Inactive</label><br />  
+                                </div>
+                            </div>
+                            <input type="hidden" name="submissionType" value="create">
+                            <input class="btn btn-primary mt-3" type="submit" value="Submit">
+                    </fieldset>
                 </form>
-            </td>
-        </tr>
-        <% } %>
-   </tbody>
-</table>
+            </div>
+        </div>
 
-<div id="create-form-block">
-    <form action="" method="POST">
-        <fieldset id="create-form">
-            <legend>Add a new school</legend>
-                <label for="school-name-create">School Name:</label><br />
-                <input type="text" id="school-name-create" name="schoolName" required><br />
-                <input type="radio" id="is-active-create" name="active" value="true" required>
-                <label for="is-active-create">Active</label><br />
-                <input type="radio" id="is-inactive-create" name="active" value="false">
-                <label for="is-active-create">Inactive</label><br />
-                <input type="hidden" name="submissionType" value="create">
-                <input type="submit" value="Submit">
-        </fieldset>
-    </form>
-</div>
-
-<div id="update-form-block">
-    <form action="" method="POST">
-        <fieldset id="update-form">
-            <legend>Update an Existing School</legend>
-                <label for="school-id-update">ID:</label><br />
-                <input type="text" id="school-id-update" name="schoolId" required><br />
-                <label for="school-name-update">School Name:</label><br />
-                <input type="text" id="school-name-update" name="schoolName" required><br />
-                <input type="radio" id="is-active-update" name="active" value="true" required>
-                <label for="is-active-update">Active</label><br />
-                <input type="radio" id="is-inactive-update" name="active" value="false">
-                <label for="is-active-update">Inactive</label><br />
-                <input type="hidden" name="submissionType" value="update">
-                <input type="submit" value="Submit">
-        </fieldset>
-    </form>
+        <div class="col-md-6">
+            <div id="update-form-block">
+                <form action="" method="POST">
+                    <fieldset id="update-form">
+                        <legend>Update an Existing School</legend>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="school-id-update">ID:</label><br />
+                                    <input type="text" id="school-id-update" name="schoolId" required><br />
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="school-name-update">School Name:</label><br />
+                                    <input type="text" id="school-name-update" name="schoolName" required><br />
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="radio" id="is-active-update" name="active" value="true" required>
+                                    <label for="is-active-update">Active</label><br />
+                                    <input type="radio" id="is-inactive-update" name="active" value="false">
+                                    <label for="is-active-update">Inactive</label><br />
+                                </div>
+                            </div>
+                            <input type="hidden" name="submissionType" value="update">
+                            <input class="btn btn-primary mt-3" type="submit" value="Submit">
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 
