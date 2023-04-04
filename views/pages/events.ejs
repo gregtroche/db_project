@@ -1,0 +1,163 @@
+<%- include ('../partials/header') %>
+
+<div class="container">
+    <h1>Events</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>School ID</th>
+                <th>Name</th>
+                <th>Active</th>
+                <th>Ceremony Date</th>
+                <th>Website Open Date</th>
+                <th>Website Close Date</th>
+                <th>Last Updated</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col">
+            <div class="rounded bg-light p-3">
+                <div id="create-form-block">
+                    <form action="" method="POST" onsubmit="return createDateValidation();">
+                        <fieldset id="create-form">
+                            <legend>Add a new event</legend>
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="event-name">Event Name:</label><br />
+                                        <input type="text" id="create-event-name" name="eventName" required><br />
+                                    </div>
+                                    <div class="col">
+                                        <label for="school-id">School ID:</label><br />
+                                        <input type="number" id="create-school-id" name="schoolId" required><br />
+                                    </div>
+                                    <div class="col">
+                                        <input type="radio" id="create-is-active" name="active" value="true" required>
+                                        <label for="is-active">Active</label><br />
+                                        <input type="radio" id="create-is-inactive" name="active" value="false">
+                                        <label for="is-active">Inactive</label><br />  
+                                    </div>
+                                </div>
+                                <div class="row mt-2 mb-2">
+                                    <div class="col">
+                                        <label for="ceremonyDate">Ceremony Date:</label><br />
+                                        <input type="date" id="create-ceremony-date" name="ceremonyDate" required><br />
+                                    </div>
+                                    <div class="col">
+                                        <label for="websiteOpenDate">Website Open:</label><br />
+                                        <input type="date" id="create-website-open-date" name="websiteOpenDate" required><br />
+                                    </div>
+                                    <div class="col">
+                                        <label for="websiteCloseDate">Website Close:</label><br />
+                                        <input type="date" id="create-website-close-date" name="websiteCloseDate" required><br />
+                                    </div>
+                                </div>
+                                <input type="hidden" name="submissionType" value="create">
+                                <input class="btn btn-primary mt-3" type="submit" value="Submit">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="rounded bg-light p-3">
+                <div id="update-form-block">
+                    <form action="" method="POST" onsubmit="return updateDateValidation();">
+                        <fieldset id="update-form">
+                            <legend>Update an Existing Event</legend>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="event-name">Event Name:</label><br />
+                                    <input type="text" id="update-event-name" name="eventName" required><br />
+                                </div>
+                                <div class="col">
+                                    <label for="event-id">Event ID:</label><br />
+                                    <input type="text" id="update-event-id" name="eventId" required><br />
+                                </div>
+                                <div class="col">
+                                    <label for="school-id">School ID:</label><br />
+                                    <input type="number" id="update-school-id" name="schoolId" required><br />
+                                </div>
+                            </div>
+                            <div class="row mt-2 mb-2">
+                                <div class="col">
+                                    <label for="ceremonyDate">Ceremony Date:</label><br />
+                                    <input type="date" id="update-ceremony-date" name="ceremonyDate" required><br />
+                                </div>
+                                <div class="col">
+                                    <label for="websiteOpenDate">Website Open:</label><br />
+                                    <input type="date" id="update-website-open-date" name="websiteOpenDate" required><br />
+                                </div>
+                                <div class="col">
+                                    <label for="websiteCloseDate">Website Close:</label><br />
+                                    <input type="date" id="update-website-close-date" name="websiteCloseDate" required><br />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="radio" id="is-active" name="active" value="true" required>
+                                    <label for="is-active">Active</label><br />
+                                    <input type="radio" id="is-inactive" name="active" value="false">
+                                    <label for="is-active">Inactive</label><br />  
+                                </div>
+                            </div>
+                            <input type="hidden" name="submissionType" value="update">
+                            <input class="btn btn-primary mt-3" type="submit" value="Submit">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+
+<script type="text/javascript">
+    function createDateValidation() {
+        const   createOpenDate = parseInt(document.getElementById("create-website-open-date").value.replaceAll('-','')),
+                createCloseDate = parseInt(document.getElementById("create-website-close-date").value.replaceAll('-','')),
+                createCeremonyDate = parseInt(document.getElementById("create-ceremony-date").value.replaceAll('-',''));
+        
+        if(createCloseDate < createOpenDate){
+            alert('Website close date must be after open date!');
+            return false;
+        }
+
+        if(createCloseDate > createCeremonyDate){
+            alert('Website ceremony cannot be before the website close date');
+            return false;
+        }
+
+        return true
+    }
+
+    function updateDateValidation() {
+        const   updateOpenDate = parseInt(document.getElementById("update-website-open-date").value.replaceAll('-','')),
+                updateCloseDate = parseInt(document.getElementById("update-website-close-date").value.replaceAll('-','')),
+                updateCeremonyDate = parseInt(document.getElementById("update-ceremony-date").value.replaceAll('-',''));
+        
+        if(updateCloseDate < updateCloseDate){
+            alert('Website close date must be after open date!');
+            return false;
+        }
+
+        if(updateCloseDate > updateCeremonyDate){
+            alert('Website ceremony cannot be before the website close date');
+            return false;
+        }
+
+        return true
+    }
+</script>
+
+<script type="text/javascript">
+    console.log('testing');
+</script>
+
+
+<%- include('../partials/footer') %>
