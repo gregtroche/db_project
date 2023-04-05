@@ -9,7 +9,7 @@ router.use(bodyParser.urlencoded({
 }));
 
 router.get('/', (req, res) => {
-    const readAllQuery = 'SELECT * FROM schools';
+    const readAllQuery = 'SELECT * FROM events';
     const data = database.query(readAllQuery);
     data.then(function(result){
         res.render('../views/pages/events', {events: result})
@@ -26,11 +26,11 @@ router.post('/', (req,res) => {
     }
 
     else if(req.body.submissionType === 'delete'){ 
-        // const deleteQuery = `DELETE FROM schools WHERE id=${req.body.schoolId};`;
-        // const deleteItem = database.query(deleteQuery);
-        // deleteItem.then(function(result){
-        //     console.log('Row Successfully Deleted!')
-        // });
+        const deleteQuery = `DELETE FROM events WHERE id=${req.body.eventId};`;
+        const deleteItem = database.query(deleteQuery);
+        deleteItem.then(function(result){
+            console.log('Row Successfully Deleted!')
+        });
     }
 
     else if(req.body.submissionType === 'update'){
@@ -42,7 +42,7 @@ router.post('/', (req,res) => {
         // console.log(req.body)
         // console.log(updateQuery)
     }
-
+    
     res.redirect('back');
 })
 

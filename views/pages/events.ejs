@@ -17,7 +17,25 @@
             </tr>
         </thead>
         <tbody>
-          
+            <% for(let i = 0; i < events.rows.length; i++) { %>
+                <tr>
+                    <td><%= events.rows[i].id %></td>
+                    <td><%= events.rows[i].school_id %></td>
+                    <td><%= events.rows[i].name %></td>
+                    <td><%= events.rows[i].active %></td>
+                    <td><%= events.rows[i].ceremony_date.toString().toString().split("00:00")[0] %></td>
+                    <td><%= events.rows[i].website_open_date.toString().split("00:00")[0] %></td>
+                    <td><%= events.rows[i].website_close_date.toString().split("00:00")[0] %></td>
+                    <td><%= events.rows[i].last_updated.toString().toString().split("GMT")[0] %></td>
+                    <td>
+                        <form action="" method="POST">
+                            <input type="hidden" name="submissionType" value="delete">
+                            <input type="hidden" name="eventId" value="<%- events.rows[i].id %>">
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
         </tbody>
     </table>
 
