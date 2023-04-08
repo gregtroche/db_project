@@ -1,6 +1,4 @@
 <%- include ('../partials/header') %>
-
-<script type="text/javascript" src="/helpers.js"></script>
 <div class="container">
     <h1>Events</h1>
     <table class="table table-striped">
@@ -65,26 +63,28 @@
                                         <label for="create-ship-to-home">Ship to Home</label><br />  
                                     </div>
                                 </div>
-                                <div class="row mt-2 mb-2">
-                                    <div class="col">
-                                        <label for="create-address">Street Address</label><br />
-                                        <input type="text" id="create-address" name="address" required style="width:100%">
+                                <div id="create-address-block">
+                                    <div class="row mt-2 mb-2">
+                                        <div class="col">
+                                            <label for="create-address">Street Address</label><br />
+                                            <input type="text" id="create-address" name="address" required style="width:100%">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mt-2 mb-2">
-                                    <div class="col">
-                                        <label for="create-city">City</label><br />
-                                        <input type="text" id="create-city" name="city" required><br />
+                                    <div class="row mt-2 mb-2">
+                                        <div class="col">
+                                            <label for="create-city">City</label><br />
+                                            <input type="text" id="create-city" name="city" required><br />
+                                        </div>
+                                        <div class="col">
+                                            <label for="create-state">State</label><br />
+                                            <input type="text" id="create-state" name="state" required><br />
+                                        </div>
+                                        <div class="col">
+                                            <label for="create-zip">Zip</label><br />
+                                            <input type="text" id="create-zip" name="zip" pattern="[0-9]*" required><br />
+                                        </div>
                                     </div>
-                                    <div class="col">
-                                        <label for="create-state">State</label><br />
-                                        <input type="text" id="create-state" name="state" required><br />
-                                    </div>
-                                    <div class="col">
-                                        <label for="create-zip">Zip</label><br />
-                                        <input type="text" id="create-zip" name="zip" pattern="[0-9]*" required><br />
-                                    </div>
-                                </div>
+                                </div> 
                                 <input type="hidden" name="submissionType" value="create">
                                 <input class="btn btn-primary mt-3" type="submit" value="Submit">
                         </fieldset>
