@@ -39,8 +39,6 @@ router.post('/', (req,res) => {
         updateItem.then(function(result){
             console.log('Row Successfully Updated!')
         });
-        // console.log(req.body)
-        // console.log(updateQuery)
     }
     
     res.redirect('back');

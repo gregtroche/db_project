@@ -1,36 +1,39 @@
 <%- include ('../partials/header') %>
 
+<script type="text/javascript" src="/helpers.js"></script>
 <div class="container">
     <h1>Events</h1>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>School ID</th>
-                <th>Name</th>
-                <th>Active</th>
-                <th>Ceremony Date</th>
-                <th>Website Open Date</th>
-                <th>Website Close Date</th>
+                <th>Event ID</th>
+                <th>Cost</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Ship to School</th>
                 <th>Last Updated</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <% for(let i = 0; i < events.rows.length; i++) { %>
+            <% for(let i = 0; i < shipping.rows.length; i++) { %>
                 <tr>
-                    <td><%= events.rows[i].id %></td>
-                    <td><%= events.rows[i].school_id %></td>
-                    <td><%= events.rows[i].name %></td>
-                    <td><%= events.rows[i].active %></td>
-                    <td><%= events.rows[i].ceremony_date.toString().toString().split("00:00")[0] %></td>
-                    <td><%= events.rows[i].website_open_date.toString().split("00:00")[0] %></td>
-                    <td><%= events.rows[i].website_close_date.toString().split("00:00")[0] %></td>
-                    <td><%= events.rows[i].last_updated.toString().toString().split("GMT")[0] %></td>
+                    <td><%= shipping.rows[i].id %></td>
+                    <td><%= shipping.rows[i].event_id %></td>
+                    <td><%= shipping.rows[i].cost %></td>
+                    <td><%= shipping.rows[i].address %></td>
+                    <td><%= shipping.rows[i].city %></td>
+                    <td><%= shipping.rows[i].state %></td>
+                    <td><%= shipping.rows[i].zip %></td>
+                    <td><%= shipping.rows[i].ship_to_school %></td>
+                    <td><%= shipping.rows[i].last_updated.toString().toString().split("GMT")[0] %></td>
                     <td>
                         <form action="" method="POST">
                             <input type="hidden" name="submissionType" value="delete">
-                            <input type="hidden" name="eventId" value="<%- events.rows[i].id %>">
+                            <input type="hidden" name="eventId" value="<%- shipping.rows[i].id %>">
                             <input class="btn btn-danger" type="submit" value="Delete">
                         </form>
                     </td>
@@ -43,37 +46,43 @@
         <div class="col">
             <div class="rounded bg-light p-3">
                 <div id="create-form-block">
-                    <form action="" method="POST" onsubmit="return createDateValidation();">
+                    <form action="" method="POST">
                         <fieldset id="create-form">
-                            <legend>Add a New Event</legend>
+                            <legend>Add a New Shipping Profile</legend>
                                 <div class="row">
                                     <div class="col">
-                                        <label for="event-name">Event Name:</label><br />
-                                        <input type="text" id="create-event-name" name="eventName" required><br />
+                                        <label for="create-shipping-cost">Shipping Cost</label><br />
+                                        <input type="number" step="0.01" id="create-shipping-cost" name="shippingCost" required><br />
                                     </div>
                                     <div class="col">
-                                        <label for="school-id">School ID:</label><br />
-                                        <input type="number" id="create-school-id" name="schoolId" required><br />
+                                        <label for="create-event-id">Event ID:</label><br />
+                                        <input type="number" id="create-event-id" name="eventId" required><br />
                                     </div>
                                     <div class="col">
-                                        <input type="radio" id="create-is-active" name="active" value="true" required>
-                                        <label for="is-active">Active</label><br />
-                                        <input type="radio" id="create-is-inactive" name="active" value="false">
-                                        <label for="is-active">Inactive</label><br />  
+                                        <input type="radio" id="create-ship-to-school" name="shipToSchool" value="true" required>
+                                        <label for="create-ship-to-school">Ship to School</label><br />
+                                        <input type="radio" id="create-ship-to-home" name="shipToSchool" value="false">
+                                        <label for="create-ship-to-home">Ship to Home</label><br />  
                                     </div>
                                 </div>
                                 <div class="row mt-2 mb-2">
                                     <div class="col">
-                                        <label for="ceremonyDate">Ceremony Date:</label><br />
-                                        <input type="date" id="create-ceremony-date" name="ceremonyDate" required><br />
+                                        <label for="create-address">Street Address</label><br />
+                                        <input type="text" id="create-address" name="address" required style="width:100%">
+                                    </div>
+                                </div>
+                                <div class="row mt-2 mb-2">
+                                    <div class="col">
+                                        <label for="create-city">City</label><br />
+                                        <input type="text" id="create-city" name="city" required><br />
                                     </div>
                                     <div class="col">
-                                        <label for="websiteOpenDate">Website Open:</label><br />
-                                        <input type="date" id="create-website-open-date" name="websiteOpenDate" required><br />
+                                        <label for="create-state">State</label><br />
+                                        <input type="text" id="create-state" name="state" required><br />
                                     </div>
                                     <div class="col">
-                                        <label for="websiteCloseDate">Website Close:</label><br />
-                                        <input type="date" id="create-website-close-date" name="websiteCloseDate" required><br />
+                                        <label for="create-zip">Zip</label><br />
+                                        <input type="text" id="create-zip" name="zip" pattern="[0-9]*" required><br />
                                     </div>
                                 </div>
                                 <input type="hidden" name="submissionType" value="create">
@@ -83,10 +92,11 @@
                 </div>
             </div>
         </div>
+
         <div class="col">
             <div class="rounded bg-light p-3">
                 <div id="update-form-block">
-                    <form action="" method="POST" onsubmit="return updateDateValidation();">
+                    <form action="" method="POST">
                         <fieldset id="update-form">
                             <legend>Update an Existing Event</legend>
                             <div class="row">
@@ -135,42 +145,6 @@
     </div> 
 </div>
 
-<script type="text/javascript">
-    function createDateValidation() {
-        const   createOpenDate = parseInt(document.getElementById("create-website-open-date").value.replaceAll('-','')),
-                createCloseDate = parseInt(document.getElementById("create-website-close-date").value.replaceAll('-','')),
-                createCeremonyDate = parseInt(document.getElementById("create-ceremony-date").value.replaceAll('-',''));
-        
-        if(createCloseDate < createOpenDate){
-            alert('Website close date must be after open date!');
-            return false;
-        }
 
-        if(createCloseDate > createCeremonyDate){
-            alert('Website ceremony cannot be before the website close date');
-            return false;
-        }
-
-        return true
-    }
-
-    function updateDateValidation() {
-        const   updateOpenDate = parseInt(document.getElementById("update-website-open-date").value.replaceAll('-','')),
-                updateCloseDate = parseInt(document.getElementById("update-website-close-date").value.replaceAll('-','')),
-                updateCeremonyDate = parseInt(document.getElementById("update-ceremony-date").value.replaceAll('-',''));
-        
-        if(updateCloseDate < updateCloseDate){
-            alert('Website close date must be after open date!');
-            return false;
-        }
-
-        if(updateCloseDate > updateCeremonyDate){
-            alert('Website ceremony cannot be before the website close date');
-            return false;
-        }
-
-        return true
-    }
-</script>
 
 <%- include('../partials/footer') %>
