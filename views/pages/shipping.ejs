@@ -1,6 +1,6 @@
 <%- include ('../partials/header') %>
 <div class="container">
-    <h1>Events</h1>
+    <h1>Shipping</h1>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -31,7 +31,7 @@
                     <td>
                         <form action="" method="POST">
                             <input type="hidden" name="submissionType" value="delete">
-                            <input type="hidden" name="eventId" value="<%- shipping.rows[i].id %>">
+                            <input type="hidden" name="shippingId" value="<%- shipping.rows[i].id %>">
                             <input class="btn btn-danger" type="submit" value="Delete">
                         </form>
                     </td>
@@ -101,40 +101,52 @@
                             <legend>Update an Existing Event</legend>
                             <div class="row">
                                 <div class="col">
-                                    <label for="event-name">Event Name:</label><br />
-                                    <input type="text" id="update-event-name" name="eventName" required><br />
-                                </div>
-                                <div class="col">
-                                    <label for="event-id">Event ID:</label><br />
-                                    <input type="text" id="update-event-id" name="eventId" required><br />
-                                </div>
-                                <div class="col">
-                                    <label for="school-id">School ID:</label><br />
-                                    <input type="number" id="update-school-id" name="schoolId" required><br />
-                                </div>
-                            </div>
-                            <div class="row mt-2 mb-2">
-                                <div class="col">
-                                    <label for="ceremonyDate">Ceremony Date:</label><br />
-                                    <input type="date" id="update-ceremony-date" name="ceremonyDate" required><br />
-                                </div>
-                                <div class="col">
-                                    <label for="websiteOpenDate">Website Open:</label><br />
-                                    <input type="date" id="update-website-open-date" name="websiteOpenDate" required><br />
-                                </div>
-                                <div class="col">
-                                    <label for="websiteCloseDate">Website Close:</label><br />
-                                    <input type="date" id="update-website-close-date" name="websiteCloseDate" required><br />
+                                    <label for="shipping-id-update">ID:</label><br />
+                                    <select name="shippingId" id="shipping-id-update" required>
+                                        <% for(let i = 0; i < shipping.rows.length; i++) { %>
+                                            <option value="<%= shipping.rows[i].id %>"><%= shipping.rows[i].id %></option>
+                                        <% } %>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <input type="radio" id="is-active" name="active" value="true" required>
-                                    <label for="is-active">Active</label><br />
-                                    <input type="radio" id="is-inactive" name="active" value="false">
-                                    <label for="is-active">Inactive</label><br />  
+                                    <label for="update-shipping-cost">Shipping Cost</label><br />
+                                    <input type="number" step="0.01" id="update-shipping-cost" name="shippingCost" required><br />
+                                </div>
+                                <div class="col">
+                                    <label for="update-event-id">Event ID:</label><br />
+                                    <input type="text" id="update-event-id" name="eventId" required><br />
+                                </div>
+                                <div class="col">
+                                    <input type="radio" id="update-ship-to-school" name="shipToSchool" value="true" required>
+                                    <label for="update-ship-to-school">Ship to School</label><br />
+                                    <input type="radio" id="update-ship-to-home" name="shipToSchool" value="false">
+                                    <label for="update-ship-to-home">Ship to Home</label><br />  
                                 </div>
                             </div>
+                            <div id="update-address-block">
+                                <div class="row mt-2 mb-2">
+                                    <div class="col">
+                                        <label for="update-address">Street Address</label><br />
+                                        <input type="text" id="update-address" name="address" required style="width:100%">
+                                    </div>
+                                </div>
+                                <div class="row mt-2 mb-2">
+                                    <div class="col">
+                                        <label for="update-city">City</label><br />
+                                        <input type="text" id="update-city" name="city" required><br />
+                                    </div>
+                                    <div class="col">
+                                        <label for="update-state">State</label><br />
+                                        <input type="text" id="update-state" name="state" required><br />
+                                    </div>
+                                    <div class="col">
+                                        <label for="update-zip">Zip</label><br />
+                                        <input type="text" id="update-zip" name="zip" pattern="[0-9]*" required><br />
+                                    </div>
+                                </div>
+                            </div> 
                             <input type="hidden" name="submissionType" value="update">
                             <input class="btn btn-primary mt-3" type="submit" value="Submit">
                         </fieldset>
@@ -145,6 +157,5 @@
     </div> 
 </div>
 
-
-
+<%- include('../partials/shipping-helpers') %>
 <%- include('../partials/footer') %>
