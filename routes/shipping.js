@@ -34,7 +34,6 @@ router.post('/', (req,res) => {
     }
 
     else if(req.body.submissionType === 'update'){
-        console.log(req.body);
         let updateQuery = ''
         if(req.body.shipToSchool == 'true'){
             updateQuery = `UPDATE shipping SET cost=${req.body.shippingCost}, address='${req.body.address}', ship_to_school=${req.body.shipToSchool}, city='${req.body.cit}', state='${req.body.state}', zip='${req.body.zip}', event_id=${req.body.eventId}, last_updated=now() WHERE id=${req.body.shippingId};`;
@@ -42,7 +41,6 @@ router.post('/', (req,res) => {
         else{
             updateQuery = `UPDATE shipping SET cost=${req.body.shippingCost}, address=null, ship_to_school=${req.body.shipToSchool}, city=null, state=null, zip=null, event_id=${req.body.eventId}, last_updated=now() WHERE id=${req.body.shippingId};`;
         }
-        
         const updateItem = database.query(updateQuery);
         updateItem.then(function(result){
             console.log('Row Successfully Updated!')

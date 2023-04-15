@@ -1,0 +1,34 @@
+<%- include ('../partials/header') %>
+<div class="container">
+    <h1>Bundle Data</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Event ID</th>
+                <th>Price</th>
+                <th>Last Updated</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = 0; i < bundle_data.rows.length; i++) { %>
+                <tr>
+                    <td><%= bundle_data.rows[i].id %></td>
+                    <td><%= bundle_data.rows[i].name %></td>
+                    <td><%= bundle_data.rows[i].image %></td>
+                    <td><%= bundle_data.rows[i].event_id %></td>
+                    <td><%= bundle_data.rows[i].price %></td>
+                    <td><%= bundle_data.rows[i].last_updated.toString().split("GMT")[0] %></td>
+                    <td>
+                        <form action="" method="POST">
+                            <input type="hidden" name="submissionType" value="delete">
+                            <input type="hidden" name="shippingId" value="<%- bundle_data.rows[i].id %>">
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>

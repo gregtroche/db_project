@@ -3,7 +3,8 @@ const   express = require('express'),
         app = express(),
         schools = require('./routes/schools'),
         events = require('./routes/events'),
-        shipping = require('./routes/shipping');
+        shipping = require('./routes/shipping'),
+        bundleData = require('./routes/bundle-data');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -15,6 +16,7 @@ app.get('/', (req, res) => {
 app.use('/schools', schools);
 app.use('/events', events);
 app.use('/shipping', shipping);
+app.use('/bundle-data', bundleData);
 
 
 app.listen(PORT, () => {
