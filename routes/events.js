@@ -9,7 +9,7 @@ router.use(bodyParser.urlencoded({
 }));
 
 router.get('/', (req, res) => {
-    const readAllQuery = 'SELECT * FROM events';
+    const readAllQuery = 'SELECT * FROM events ORDER BY id';
     const data = database.query(readAllQuery);
     data.then(function(result){
         res.render('../views/pages/events', {events: result})

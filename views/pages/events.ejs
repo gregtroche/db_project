@@ -48,31 +48,31 @@
                             <legend>Add a New Event</legend>
                                 <div class="row">
                                     <div class="col">
-                                        <label for="event-name">Event Name:</label><br />
+                                        <label for="create-event-name">Event Name:</label><br />
                                         <input type="text" id="create-event-name" name="eventName" required><br />
                                     </div>
                                     <div class="col">
-                                        <label for="school-id">School ID:</label><br />
+                                        <label for="create-school-id">School ID:</label><br />
                                         <input type="number" id="create-school-id" name="schoolId" required><br />
                                     </div>
                                     <div class="col">
                                         <input type="radio" id="create-is-active" name="active" value="true" required>
-                                        <label for="is-active">Active</label><br />
+                                        <label for="create-is-active">Active</label><br />
                                         <input type="radio" id="create-is-inactive" name="active" value="false">
-                                        <label for="is-active">Inactive</label><br />  
+                                        <label for="create-is-inactive">Inactive</label><br />  
                                     </div>
                                 </div>
                                 <div class="row mt-2 mb-2">
                                     <div class="col">
-                                        <label for="ceremonyDate">Ceremony Date:</label><br />
+                                        <label for="create-ceremony-date">Ceremony Date:</label><br />
                                         <input type="date" id="create-ceremony-date" name="ceremonyDate" required><br />
                                     </div>
                                     <div class="col">
-                                        <label for="websiteOpenDate">Website Open:</label><br />
+                                        <label for="create-website-open-date">Website Open:</label><br />
                                         <input type="date" id="create-website-open-date" name="websiteOpenDate" required><br />
                                     </div>
                                     <div class="col">
-                                        <label for="websiteCloseDate">Website Close:</label><br />
+                                        <label for="create-website-close-date">Website Close:</label><br />
                                         <input type="date" id="create-website-close-date" name="websiteCloseDate" required><br />
                                     </div>
                                 </div>
@@ -91,29 +91,34 @@
                             <legend>Update an Existing Event</legend>
                             <div class="row">
                                 <div class="col">
-                                    <label for="event-name">Event Name:</label><br />
+                                    <label for="update-event-id">Event ID:</label><br />
+                                    <!-- <input type="text" id="update-event-id" name="eventId" required><br /> -->
+                                    <select name="eventId" id="update-event-id" required>
+                                        <% for(let i = 0; i < events.rows.length; i++) { %>
+                                            <option value="<%= events.rows[i].id %>"><%= events.rows[i].id %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="update-event-name">Event Name:</label><br />
                                     <input type="text" id="update-event-name" name="eventName" required><br />
                                 </div>
                                 <div class="col">
-                                    <label for="event-id">Event ID:</label><br />
-                                    <input type="text" id="update-event-id" name="eventId" required><br />
-                                </div>
-                                <div class="col">
-                                    <label for="school-id">School ID:</label><br />
+                                    <label for="update-school-id">School ID:</label><br />
                                     <input type="number" id="update-school-id" name="schoolId" required><br />
                                 </div>
                             </div>
                             <div class="row mt-2 mb-2">
                                 <div class="col">
-                                    <label for="ceremonyDate">Ceremony Date:</label><br />
+                                    <label for="update-ceremony-date">Ceremony Date:</label><br />
                                     <input type="date" id="update-ceremony-date" name="ceremonyDate" required><br />
                                 </div>
                                 <div class="col">
-                                    <label for="websiteOpenDate">Website Open:</label><br />
+                                    <label for="update-website-open-date">Website Open:</label><br />
                                     <input type="date" id="update-website-open-date" name="websiteOpenDate" required><br />
                                 </div>
                                 <div class="col">
-                                    <label for="websiteCloseDate">Website Close:</label><br />
+                                    <label for="update-website-close-date">Website Close:</label><br />
                                     <input type="date" id="update-website-close-date" name="websiteCloseDate" required><br />
                                 </div>
                             </div>

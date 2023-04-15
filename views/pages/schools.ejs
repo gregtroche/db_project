@@ -67,7 +67,11 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="school-id-update">ID:</label><br />
-                                        <input type="text" id="school-id-update" name="schoolId" required><br />
+                                        <select name="schoolId" id="school-id-update" required>
+                                            <% for(let i = 0; i < schools.rows.length; i++) { %>
+                                                <option value="<%= schools.rows[i].id %>"><%= schools.rows[i].id %></option>
+                                                <% } %>
+                                        </select>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="school-name-update">School Name:</label><br />
