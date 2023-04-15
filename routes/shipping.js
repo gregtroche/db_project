@@ -33,15 +33,23 @@ router.post('/', (req,res) => {
         });
     }
 
-//     else if(req.body.submissionType === 'update'){
-//         const updateQuery = `UPDATE events SET name='${req.body.eventName}', school_id=${req.body.schoolId}, ceremony_date='${req.body.ceremonyDate}', website_open_date='${req.body.websiteOpenDate}', website_close_date='${req.body.websiteOpenDate}', active=${req.body.active}, last_updated=now() WHERE id=${req.body.eventId};`;
-//         const updateItem = database.query(updateQuery);
-//         updateItem.then(function(result){
-//             console.log('Row Successfully Updated!')
-//         });
-//     }
+    else if(req.body.submissionType === 'update'){
+        console.log(req.body);
+        let updateQuery = ''
+        if(req.body.shipToSchool == 'true'){
+            updateQuery = `UPDATE shipping SET cost=${req.body.shippingCost}, address='${req.body.address}', ship_to_school=${req.body.shipToSchool}, city='${req.body.cit}', state='${req.body.state}', zip='${req.body.zip}', event_id=${req.body.eventId}, last_updated=now() WHERE id=${req.body.shippingId};`;
+        } 
+        else{
+            updateQuery = `UPDATE shipping SET cost=${req.body.shippingCost}, address=null, ship_to_school=${req.body.shipToSchool}, city=null, state=null, zip=null, event_id=${req.body.eventId}, last_updated=now() WHERE id=${req.body.shippingId};`;
+        }
+        
+        const updateItem = database.query(updateQuery);
+        updateItem.then(function(result){
+            console.log('Row Successfully Updated!')
+        });
+    }
     
-//     res.redirect('back');
+    res.redirect('back');
 })
 
 module.exports = router;
