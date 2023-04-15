@@ -24,7 +24,7 @@
                     <td>
                         <form action="" method="POST">
                             <input type="hidden" name="submissionType" value="delete">
-                            <input type="hidden" name="shippingId" value="<%- bundle_data.rows[i].id %>">
+                            <input type="hidden" name="bundleId" value="<%- bundle_data.rows[i].id %>">
                             <input class="btn btn-danger" type="submit" value="Delete">
                         </form>
                     </td>
@@ -32,3 +32,84 @@
             <% } %>
         </tbody>
     </table>
+
+    <div class="row">
+        <div class="col">
+            <div class="rounded bg-light p-3">
+                <div id="create-form-block">
+                    <form action="" method="POST">
+                        <fieldset id="create-form">
+                            <legend>Add a New Bundle</legend>
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="create-event-name">Bundle Name:</label><br />
+                                        <input type="text" id="create-bundle-name" name="bundleName" required><br />
+                                    </div>
+                                    <div class="col">
+                                        <label for="create-bundle-image">Bundle Image</label><br />
+                                        <input type="text" id="create-bundle-image" name="bundleImage" required><br />
+                                    </div>
+                                </div>
+                                <div class="row mt-2 mb-2">
+                                    <div class="col">
+                                        <label for="create-event-id">Event ID:</label><br />
+                                        <input type="text" id="create-event-id" name="eventId" required><br />
+                                    </div>
+                                    <div class="col">
+                                        <label for="create-bundle-price">Bundle Price</label><br />
+                                        <input type="number" step="0.01" id="create-bundle-cost" name="bundlePrice" required><br />
+                                    </div>
+                                </div>
+                                <input type="hidden" name="submissionType" value="create">
+                                <input class="btn btn-primary mt-3" type="submit" value="Submit">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="rounded bg-light p-3">
+                <div id="update-form-block">
+                    <form action="" method="POST">
+                        <fieldset id="update-form">
+                            <legend>Update an Existing Bundle</legend>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="bundle-id-update">ID:</label><br />
+                                    <select name="bundleId" id="bundle-id-update" required>
+                                        <% for(let i = 0; i < bundle_data.rows.length; i++) { %>
+                                            <option value="<%= bundle_data.rows[i].id %>"><%= bundle_data.rows[i].id %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="update-event-name">Bundle Name:</label><br />
+                                    <input type="text" id="update-bundle-name" name="bundleName" required><br />
+                                </div>
+                                <div class="col">
+                                    <label for="update-bundle-image">Bundle Image</label><br />
+                                    <input type="text" id="update-bundle-image" name="bundleImage" required><br />
+                                </div>
+                            </div>
+                            <div class="row mt-2 mb-2">
+                                <div class="col">
+                                    
+                                </div>
+                                <div class="col">
+                                    <label for="create-event-id">Event ID:</label><br />
+                                    <input type="text" id="create-event-id" name="eventId" required><br />
+                                </div>
+                                <div class="col">
+                                    <label for="create-bundle-price">Bundle Price</label><br />
+                                    <input type="number" step="0.01" id="create-bundle-cost" name="bundlePrice" required><br />
+                                </div>
+                            </div>
+                            <input type="hidden" name="submissionType" value="update">
+                            <input class="btn btn-primary mt-3" type="submit" value="Submit">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
