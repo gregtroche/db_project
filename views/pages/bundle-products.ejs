@@ -1,0 +1,76 @@
+<%- include ('../partials/header') %>
+<div class="container">
+    <h1>Bundle Products</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = 0; i < bundle_products.rows.length; i++) { %>
+                <tr>
+                    <td><%= bundle_products.rows[i].id %></td>
+                    <td><%= bundle_products.rows[i].name %></td>
+                    <td>
+                        <form action="" method="POST">
+                            <input type="hidden" name="submissionType" value="delete">
+                            <input type="hidden" name="bundleProductId" value="<%- bundle_products.rows[i].id %>">
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col">
+            <div class="rounded bg-light p-3">
+                <div id="create-form-block">
+                    <form action="" method="POST">
+                        <fieldset id="create-form">
+                            <legend>Add a New Product</legend>
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="create-event-name">Product Name:</label><br />
+                                        <input type="text" id="create-bundle-name" name="bundleProductName" required><br />
+                                    </div>
+                                </div>
+                                <input type="hidden" name="submissionType" value="create">
+                                <input class="btn btn-primary mt-3" type="submit" value="Submit">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="rounded bg-light p-3">
+                <div id="update-form-block">
+                    <form action="" method="POST">
+                        <fieldset id="update-form">
+                            <legend>Update an Existing Product</legend>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="bundle-product-id-update">ID:</label><br />
+                                    <select name="bundleProductId" id="bundle-product-id-update" required>
+                                        <% for(let i = 0; i < bundle_products.rows.length; i++) { %>
+                                            <option value="<%= bundle_products.rows[i].id %>"><%= bundle_products.rows[i].id %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="update-event-name">Product Name:</label><br />
+                                    <input type="text" id="update-bundle-product-name" name="bundleProductName" required><br />
+                                </div>
+                            </div>
+                            <input type="hidden" name="submissionType" value="update">
+                            <input class="btn btn-primary mt-3" type="submit" value="Submit">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
