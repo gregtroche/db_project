@@ -5,7 +5,8 @@ const   express = require('express'),
         events = require('./routes/events'),
         shipping = require('./routes/shipping'),
         bundleData = require('./routes/bundle-data'),
-        bundleProducts = require('./routes/bundle-products');
+        bundleProducts = require('./routes/bundle-products'),
+        accessoryGroups = require('./routes/accessory-groups');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -19,6 +20,7 @@ app.use('/events', events);
 app.use('/shipping', shipping);
 app.use('/bundle-data', bundleData);
 app.use('/bundle-products', bundleProducts);
+app.use('/accessory-groups', accessoryGroups);
 
 
 app.listen(PORT, () => {
