@@ -1,0 +1,1 @@
+dragula([document.getElementById('col-1'), document.getElementById('col-2')]);

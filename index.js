@@ -7,7 +7,8 @@ const   express = require('express'),
         bundleData = require('./routes/bundle-data'),
         bundleProducts = require('./routes/bundle-products'),
         accessoryGroups = require('./routes/accessory-groups'),
-        accessoryProducts = require('./routes/accessory-products');
+        accessoryProducts = require('./routes/accessory-products'),
+        accessoryJoin = require('./routes/accessory-join');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -23,6 +24,7 @@ app.use('/bundle-data', bundleData);
 app.use('/bundle-products', bundleProducts);
 app.use('/accessory-groups', accessoryGroups);
 app.use('/accessory-products', accessoryProducts);
+app.use('/accessory-join', accessoryJoin);
 
 
 app.listen(PORT, () => {

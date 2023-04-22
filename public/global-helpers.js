@@ -1,4 +1,4 @@
-console.log('testing')
+console.log('Global Helpers Working')
 
 const createDateValidation = () => {
     const   createOpenDate = parseInt(document.getElementById("create-website-open-date").value.replaceAll('-','')),
