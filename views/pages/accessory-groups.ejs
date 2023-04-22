@@ -1,34 +1,6 @@
 <%- include ('../partials/header') %>
 <div class="container">
     <h1>Accessory Groups</h1>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Event ID</th>
-                <th>Last Updated</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% for(let i = 0; i < accessory_data.rows.length; i++) { %>
-                <tr>
-                    <td><%= accessory_data.rows[i].id %></td>
-                    <td><%= accessory_data.rows[i].name %></td>
-                    <td><%= accessory_data.rows[i].event_id %></td>
-                    <td><%= accessory_data.rows[i].last_updated.toString().split("GMT")[0] %></td>
-                    <td>
-                        <form action="" method="POST">
-                            <input type="hidden" name="submissionType" value="delete">
-                            <input type="hidden" name="accessoryGroupId" value="<%- accessory_data.rows[i].id %>">
-                            <input class="btn btn-danger" type="submit" value="Delete">
-                        </form>
-                    </td>
-                </tr>
-            <% } %>
-        </tbody>
-    </table>
-
     <div class="row">
         <div class="col">
             <div class="rounded bg-light p-3">
@@ -85,4 +57,31 @@
             </div>
         </div>
     </div> 
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Event ID</th>
+                <th>Last Updated</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = 0; i < accessory_data.rows.length; i++) { %>
+                <tr>
+                    <td><%= accessory_data.rows[i].id %></td>
+                    <td><%= accessory_data.rows[i].name %></td>
+                    <td><%= accessory_data.rows[i].event_id %></td>
+                    <td><%= accessory_data.rows[i].last_updated.toString().split("GMT")[0] %></td>
+                    <td>
+                        <form action="" method="POST">
+                            <input type="hidden" name="submissionType" value="delete">
+                            <input type="hidden" name="accessoryGroupId" value="<%- accessory_data.rows[i].id %>">
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
 </div>

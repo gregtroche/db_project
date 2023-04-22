@@ -1,0 +1,99 @@
+<%- include ('../partials/header') %>
+<div class="container">
+    <h1>Acessory Products</h1>
+    <div class="row">
+        <div class="col">
+            <div class="rounded bg-light p-3">
+                <div id="create-form-block">
+                    <form action="" method="POST">
+                        <fieldset id="create-form">
+                            <legend>Add a New Product</legend>
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="create-product-name">Product Name:</label><br />
+                                        <input type="text" id="create-product-name" name="accessoryProductName" required><br />
+                                    </div>
+                                    <div class="col">
+                                        <label for="create-product-price">Price:</label><br />
+                                        <input type="number" step=".01" id="create-product-name" name="accessoryProductPrice" required><br />
+                                    </div>
+                                    <div class="col">
+                                        <label for="create-product-image">Image:</label><br />
+                                        <input type="text" id="create-product-image" name="accessoryProductImage" required><br />
+                                    </div>
+                                </div>
+                                <input type="hidden" name="submissionType" value="create">
+                                <input class="btn btn-primary mt-3" type="submit" value="Submit">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="rounded bg-light p-3">
+                <div id="update-form-block">
+                    <form action="" method="POST">
+                        <fieldset id="update-form">
+                            <legend>Update an Existing Product</legend>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="accessory-product-id-update">ID:</label><br />
+                                    <select name="accessoryProductId" id="accessory-product-id-update" required>
+                                        <% for(let i = 0; i < accessory_products.rows.length; i++) { %>
+                                            <option value="<%= accessory_products.rows[i].id %>"><%= accessory_products.rows[i].id %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="update-accessory-name">Accessory Name:</label><br />
+                                    <input type="text" id="update-accessory-product-name" name="accessoryProductName" required><br />
+                                </div>
+                                <div class="col">
+                                    <label for="update-product-price">Price:</label><br />
+                                    <input type="number" step=".01" id="update-product-name" name="accessoryProductPrice" required><br />
+                                </div>
+                                <div class="col">
+                                    <label for="update-product-image">Image:</label><br />
+                                    <input type="text" id="update-product-image" name="accessoryProductImage" required><br />
+                                </div>
+                            </div>
+                            <input type="hidden" name="submissionType" value="update">
+                            <input class="btn btn-primary mt-3" type="submit" value="Submit">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = 0; i < accessory_products.rows.length; i++) { %>
+                <tr>
+                    <td><%= accessory_products.rows[i].id %></td>
+                    <td><%= accessory_products.rows[i].name %></td>
+                    <td><%= accessory_products.rows[i].image %></td>
+                    <td><%= accessory_products.rows[i].price %></td>
+                    <td>
+                        <form action="" method="POST">
+                            <input type="hidden" name="submissionType" value="delete">
+                            <input type="hidden" name="accessoryProductId" value="<%- accessory_products.rows[i].id %>">
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    
+</div>

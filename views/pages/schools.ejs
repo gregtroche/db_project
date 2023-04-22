@@ -2,34 +2,6 @@
 
 <div class="container">
     <h1>Schools</h1>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Active</th>
-                <th>Last Updated</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% for(let i = 0; i < schools.rows.length; i++) { %>
-                <tr>
-                    <td><%= schools.rows[i].id %></td>
-                    <td><%= schools.rows[i].name %></td>
-                    <td><%= schools.rows[i].active %></td>
-                    <td><%= schools.rows[i].last_updated.toString().split("GMT")[0] %></td>
-                    <td>
-                        <form action="" method="POST">
-                            <input type="hidden" name="submissionType" value="delete">
-                            <input type="hidden" name="schoolId" value="<%- schools.rows[i].id %>">
-                            <input class="btn btn-danger" type="submit" value="Delete">
-                        </form>
-                    </td>
-                </tr>
-            <% } %>
-        </tbody>
-    </table>
-
     <div class="row">
         <div class="col">
             <div class="rounded bg-light p-3">
@@ -91,5 +63,32 @@
             </div>
         </div>
     </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Active</th>
+                <th>Last Updated</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = 0; i < schools.rows.length; i++) { %>
+                <tr>
+                    <td><%= schools.rows[i].id %></td>
+                    <td><%= schools.rows[i].name %></td>
+                    <td><%= schools.rows[i].active %></td>
+                    <td><%= schools.rows[i].last_updated.toString().split("GMT")[0] %></td>
+                    <td>
+                        <form action="" method="POST">
+                            <input type="hidden" name="submissionType" value="delete">
+                            <input type="hidden" name="schoolId" value="<%- schools.rows[i].id %>">
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
 </div>
 <%- include('../partials/footer') %>

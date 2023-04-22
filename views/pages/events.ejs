@@ -2,42 +2,6 @@
 
 <div class="container">
     <h1>Events</h1>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>School ID</th>
-                <th>Name</th>
-                <th>Active</th>
-                <th>Ceremony Date</th>
-                <th>Website Open Date</th>
-                <th>Website Close Date</th>
-                <th>Last Updated</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% for(let i = 0; i < events.rows.length; i++) { %>
-                <tr>
-                    <td><%= events.rows[i].id %></td>
-                    <td><%= events.rows[i].school_id %></td>
-                    <td><%= events.rows[i].name %></td>
-                    <td><%= events.rows[i].active %></td>
-                    <td><%= events.rows[i].ceremony_date.toString().split("00:00")[0] %></td>
-                    <td><%= events.rows[i].website_open_date.toString().split("00:00")[0] %></td>
-                    <td><%= events.rows[i].website_close_date.toString().split("00:00")[0] %></td>
-                    <td><%= events.rows[i].last_updated.toString().split("GMT")[0] %></td>
-                    <td>
-                        <form action="" method="POST">
-                            <input type="hidden" name="submissionType" value="delete">
-                            <input type="hidden" name="eventId" value="<%- events.rows[i].id %>">
-                            <input class="btn btn-danger" type="submit" value="Delete">
-                        </form>
-                    </td>
-                </tr>
-            <% } %>
-        </tbody>
-    </table>
-
     <div class="row">
         <div class="col">
             <div class="rounded bg-light p-3">
@@ -136,6 +100,41 @@
             </div>
         </div>
     </div> 
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>School ID</th>
+                <th>Name</th>
+                <th>Active</th>
+                <th>Ceremony Date</th>
+                <th>Website Open Date</th>
+                <th>Website Close Date</th>
+                <th>Last Updated</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = 0; i < events.rows.length; i++) { %>
+                <tr>
+                    <td><%= events.rows[i].id %></td>
+                    <td><%= events.rows[i].school_id %></td>
+                    <td><%= events.rows[i].name %></td>
+                    <td><%= events.rows[i].active %></td>
+                    <td><%= events.rows[i].ceremony_date.toString().split("00:00")[0] %></td>
+                    <td><%= events.rows[i].website_open_date.toString().split("00:00")[0] %></td>
+                    <td><%= events.rows[i].website_close_date.toString().split("00:00")[0] %></td>
+                    <td><%= events.rows[i].last_updated.toString().split("GMT")[0] %></td>
+                    <td>
+                        <form action="" method="POST">
+                            <input type="hidden" name="submissionType" value="delete">
+                            <input type="hidden" name="eventId" value="<%- events.rows[i].id %>">
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
 </div>
 
 <%- include('../partials/footer') %>
