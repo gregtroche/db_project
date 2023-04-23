@@ -17,14 +17,14 @@ app.get('/', (req, res) => {
     res.send({ 'message':'Endpoint Working' });
 });
 
-app.use('/schools', schools);
-app.use('/events', events);
-app.use('/shipping', shipping);
-app.use('/bundle-data', bundleData);
-app.use('/bundle-products', bundleProducts);
-app.use('/accessory-groups', accessoryGroups);
-app.use('/accessory-products', accessoryProducts);
-app.use('/accessory-join', accessoryJoin);
+app.use('/schools/', schools);
+app.use('/events/', events);
+app.use('/shipping/', shipping);
+app.use('/bundle-data/', bundleData);
+app.use('/bundle-products/', bundleProducts);
+app.use('/accessory-groups/', accessoryGroups);
+app.use('/accessory-products/', accessoryProducts);
+app.use('/accessory-join/', accessoryJoin);
 
 
 app.listen(PORT, () => {

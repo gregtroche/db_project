@@ -1,0 +1,17 @@
+<%- include ('../partials/header') %>
+<div class="container">
+    <h1>Accessory Groups Join</h1>
+    <div class="row">
+        <div class="col-md-4 rounded bg-light p-3">
+            <form action ="" method="POST">
+                <legend>Please Select An Accessory Group to Assign Products</legend>
+                <label for="accessory-group-id-update">Accessory Group:</label>
+                <select name="accessoryGroupId" id="accessory-group-id-update" required>
+                    <% for(let i = 0; i < accessory_groups.rows.length; i++) { %>
+                        <option value="<%= accessory_groups.rows[i].id %>"><%= accessory_groups.rows[i].id %>: <%= accessory_groups.rows[i].name %></option>
+                    <% } %>
+                </select>
+                <input class="btn btn-primary mt-3" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>

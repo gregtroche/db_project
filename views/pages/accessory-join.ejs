@@ -3,31 +3,19 @@
     <h1>Accessory Joining</h1>
     <div class="row">
         <div class="col bg-primary">
-            <!-- <form action="" method="POST">
-                <fieldset id="col-1">
-                    <legend>Col 1</legend>
-                    <input class="messageCheckbox" type="checkbox" name="val1" value="Value 1">
-                    <label for="val1">Value 1</label><br />
-                    <input class="messageCheckbox" type="checkbox" name="val2" value="Value 2">
-                    <label for="val2">Value 2</label><br />
-                </fieldset>
-            </form>      -->
             <ul id="col-1">
+                <% for(let i = 0; i < accessory_join.length; i++) { %>
+                    <li class="bg-light"><%= accessory_join[i].product_name %></li>
+                <% } %>
                 <li class="bg-light">first</li>
                 <li class="bg-light">second</li>
             </ul>
         </div>
         <div class="col bg-primary">
-            <!-- <form action="" method="POST">
-                <fieldset id="col-2">
-                    <legend>Col 2</legend>
-                    <input class="messageCheckbox" type="checkbox" name="val3" value="Value 3">
-                    <label for="val1">Value 3</label><br />
-                    <input class="messageCheckbox" type="checkbox" name="val4" value="Value 4">
-                    <label for="val3">Value 4</label><br />
-                </fieldset>
-            </form> -->
             <ul id="col-2">
+                <% for(let i = 0; i < accessory_products.length; i++) { %>
+                    <li class="bg-light"><%= accessory_products[i].name %></li>
+                <% } %>
                 <li class="bg-light">third</li>
                 <li class="bg-light">fourth</li>
             </ul>
