@@ -18,7 +18,13 @@ router.get('/', (req, res) => {
 
 router.post('/', (req,res) => {
     if(req.body.submissionType === 'create'){ 
-        const createQuery = `INSERT INTO shipping (cost, address, ship_to_school, city, state, zip, event_id, last_updated) VALUES(${req.body.shippingCost}, '${req.body.address}', ${req.body.shipToSchool}, '${req.body.city}', '${req.body.state}', '${req.body.zip}', ${req.body.eventId}, now());`;
+        let createQuery = ''
+        if(req.body.shipToSchool == 'true'){
+            createQuery = `INSERT INTO shipping (cost, address, ship_to_school, city, state, zip, event_id, last_updated) VALUES(${req.body.shippingCost}, '${req.body.address}', ${req.body.shipToSchool}, '${req.body.city}', '${req.body.state}', '${req.body.zip}', ${req.body.eventId}, now());`;
+        } else {
+            createQuery = `INSERT INTO shipping (cost, address, ship_to_school, city, state, zip, event_id, last_updated) VALUES(${req.body.shippingCost}, null, ${req.body.shipToSchool}, null, null, null, ${req.body.eventId}, now());`;
+        }
+        
         const submission = database.query(createQuery);
         submission.then(function(result){
             console.log('Submission Successful!')
