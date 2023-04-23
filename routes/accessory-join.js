@@ -22,13 +22,13 @@ router.get('/:id', (req, res) => {
     let data = database.query(readAllQuery);
     data.then(function(result){
         dbData['accessory_join'] = result.rows;
-    });
-    readAllQuery = `SELECT * FROM accessory_products WHERE id NOT IN (SELECT product_id FROM accessory_group_product_data WHERE group_id = ${req.params.id});`
-    data = database.query(readAllQuery);
-    data.then(function(result){
-        dbData['accessory_products'] = result.rows;
-        res.render('../views/pages/accessory-join', dbData);
-    });
+        readAllQuery = `SELECT * FROM accessory_products WHERE id NOT IN (SELECT product_id FROM accessory_group_product_data WHERE group_id = ${req.params.id});`
+        data = database.query(readAllQuery);
+        data.then(function(result){
+            dbData['accessory_products'] = result.rows;
+            res.render('../views/pages/accessory-join', dbData);
+        });
+    });   
 })
 
 router.post('/', (req,res) => {
