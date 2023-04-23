@@ -1,26 +1,42 @@
 <%- include ('../partials/header') %>
 <div class="container">
     <h1>Accessory Joining</h1>
+    <div>
+        <p>Drag bundle products into the accessory group and click submit to add</p>
+    </div>
     <div class="row">
-        <div class="col bg-primary">
-            <ul id="col-1">
-                <% for(let i = 0; i < accessory_join.length; i++) { %>
-                    <li class="bg-light"><%= accessory_join[i].product_name %></li>
+        <div class="col">
+            <div class="rounded bg-light p-3">
+                <% try { %>
+                <h3><%= accessory_join[0].group_name %></h2>
+                <% } catch { %>
+                <h3>Accessory Group</h3>
                 <% } %>
-                <li class="bg-light">first</li>
-                <li class="bg-light">second</li>
-            </ul>
+                <ul id="col-1" class="list-unstyled">
+                    <li class="m-1 p-2" data-id="ignore"></li>
+                    <% for(let i = 0; i < accessory_join.length; i++) { %>
+                        <li class="border border-2 rounded m-1 p-2" data-id="<%= accessory_join[i].id %>"><%= accessory_join[i].product_name %></li>
+                    <% } %>
+                </ul>
+            </div>
         </div>
-        <div class="col bg-primary">
-            <ul id="col-2">
-                <% for(let i = 0; i < accessory_products.length; i++) { %>
-                    <li class="bg-light"><%= accessory_products[i].name %></li>
-                <% } %>
-                <li class="bg-light">third</li>
-                <li class="bg-light">fourth</li>
-            </ul>
+        <div class="col">
+            <div class="rounded bg-light p-3">
+                <h3>Bundle Products</h2>
+                <ul id="col-2" class="list-unstyled">
+                    <% for(let i = 0; i < accessory_products.length; i++) { %>
+                        <li class="border border-2 rounded m-1 p-2" data-id="<%= accessory_products[i].id %>"><%= accessory_products[i].name %></li>
+                    <% } %>
+                </ul>
+            </div>
         </div>
     </div>
+    <form action="" method="POST" onsubmit="return submitJoin();">
+        <fieldset id="submit-form">
+            <input id="product-submission" type="hidden" name="productSubmission" value="">
+            <input class="btn btn-primary mt-3" type="submit" value="Submit" />
+        </fieldset>
+    </form>
 </div>
 
 

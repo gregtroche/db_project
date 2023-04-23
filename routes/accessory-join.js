@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     let dbData = {}
-    let readAllQuery = `SELECT agd.name as group_name, ap.name as product_name FROM accessory_products as ap INNER JOIN accessory_group_product_data as agpd ON ap.id = agpd.product_id INNER JOIN accessory_group_data agd ON agpd.group_id = agd.id WHERE agd.id = ${req.params.id};`;
+    let readAllQuery = `SELECT agd.name as group_name, ap.name as product_name, ap.id as id FROM accessory_products as ap INNER JOIN accessory_group_product_data as agpd ON ap.id = agpd.product_id INNER JOIN accessory_group_data agd ON agpd.group_id = agd.id WHERE agd.id = ${req.params.id};`;
     let data = database.query(readAllQuery);
     data.then(function(result){
         dbData['accessory_join'] = result.rows;
@@ -32,8 +32,22 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', (req,res) => {
-    console.log(req.body);
     res.redirect(`${req.body.accessoryGroupId}`);
+})
+
+router.post('/:id', (req,res) => {
+    console.log(req.body);
+    const productSubmission = JSON.parse(req.body.productSubmission)
+    console.log(productSubmission)
+    console.log(productSubmission.products)
+    for(const submission of productSubmission.products){
+        const createQuery = `INSERT INTO accessory_group_product_data (product_id, group_id) VALUES(${submission}, ${req.params.id});`;
+        const sendQuery = database.query(createQuery);
+        sendQuery.then(function(result){
+            console.log('Submission Successful!')
+        });
+    }
+    res.redirect('/accessory-join/')  
 })
 
 module.exports = router;
