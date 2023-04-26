@@ -6,6 +6,7 @@ const   express = require('express'),
         shipping = require('./routes/shipping'),
         bundleData = require('./routes/bundle-data'),
         bundleProducts = require('./routes/bundle-products'),
+        bundleJoin = require('./routes/bundle-join'),
         accessoryGroups = require('./routes/accessory-groups'),
         accessoryProducts = require('./routes/accessory-products'),
         accessoryJoin = require('./routes/accessory-join');
@@ -25,7 +26,7 @@ app.use('/bundle-products/', bundleProducts);
 app.use('/accessory-groups/', accessoryGroups);
 app.use('/accessory-products/', accessoryProducts);
 app.use('/accessory-join/', accessoryJoin);
-
+app.use('/bundle-join/', bundleJoin);
 
 app.listen(PORT, () => {
     console.log(`Server Running at: http://localhost:${PORT}/`);

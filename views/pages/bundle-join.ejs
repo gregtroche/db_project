@@ -1,0 +1,48 @@
+<%- include ('../partials/header') %>
+<div class="container">
+    <h1>Bundle Joining</h1>
+    <div>
+        <p>Drag bundle products into the bundle and click submit to add</p>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="rounded bg-light p-3">
+                <% try { %>
+                <h3><%= bundle_join[0].bundle_name %></h2>
+                <% } catch { %>
+                <h3>Bundle</h3>
+                <% } %>
+                <ul id="col-1" class="list-unstyled">
+                    <li class="m-1 p-2" data-id="ignore"></li>
+                    <% for(let i = 0; i < bundle_join.length; i++) { %>
+                        <li class="border border-2 rounded m-1 p-2" data-id="<%= bundle_join[i].id %>"><%= bundle_join[i].product_name %></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+        <div class="col">
+            <div class="rounded bg-light p-3">
+                <h3>Available Bundle Products</h2>
+                <ul id="col-2" class="list-unstyled">
+                    <% for(let i = 0; i < bundle_products.length; i++) { %>
+                        <li class="border border-2 rounded m-1 p-2" data-id="<%= bundle_products[i].id %>"><%= bundle_products[i].name %></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <form action="" method="POST" onsubmit="return submitJoin();">
+        <fieldset id="submit-form">
+            <input id="product-submission" type="hidden" name="productSubmission" value="">
+            <input class="btn btn-primary mt-3" type="submit" value="Submit" />
+        </fieldset>
+    </form>
+</div>
+
+
+<script type="module">
+    console.log('test')
+</script>
+
+
+<%- include('../partials/dragula') %>
