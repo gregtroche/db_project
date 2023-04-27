@@ -15,7 +15,7 @@
                 <ul id="col-1" class="list-unstyled">
                     <li class="m-1 p-2" data-id="ignore"></li>
                     <% for(let i = 0; i < accessory_join.length; i++) { %>
-                        <li class="border border-2 rounded m-1 p-2" data-id="<%= accessory_join[i].id %>"><%= accessory_join[i].product_name %></li>
+                        <li class="border border-2 rounded m-1 p-2 product" data-id="<%= accessory_join[i].id %>"><%= accessory_join[i].product_name %></li>
                     <% } %>
                 </ul>
             </div>
@@ -25,7 +25,7 @@
                 <h3>Bundle Products</h2>
                 <ul id="col-2" class="list-unstyled">
                     <% for(let i = 0; i < accessory_products.length; i++) { %>
-                        <li class="border border-2 rounded m-1 p-2" data-id="<%= accessory_products[i].id %>"><%= accessory_products[i].name %></li>
+                        <li class="border border-2 rounded m-1 p-2 product" data-id="<%= accessory_products[i].id %>"><%= accessory_products[i].name %></li>
                     <% } %>
                 </ul>
             </div>
@@ -38,11 +38,6 @@
         </fieldset>
     </form>
 </div>
-
-
-<script type="module">
-    console.log('test')
-</script>
 
 
 <%- include('../partials/dragula') %>

@@ -35,19 +35,19 @@ router.post('/', (req,res) => {
     res.redirect(`${req.body.bundleId}`);
 })
 
-// router.post('/:id', (req,res) => {
-//     console.log(req.body);
-//     const productSubmission = JSON.parse(req.body.productSubmission)
-//     console.log(productSubmission)
-//     console.log(productSubmission.products)
-//     for(const submission of productSubmission.products){
-//         const createQuery = `INSERT INTO accessory_group_product_data (product_id, group_id) VALUES(${submission}, ${req.params.id});`;
-//         const sendQuery = database.query(createQuery);
-//         sendQuery.then(function(result){
-//             console.log('Submission Successful!')
-//         });
-//     }
-//     res.redirect('/accessory-join/')  
-// })
+router.post('/:id', (req,res) => {
+    console.log(req.body);
+    const productSubmission = JSON.parse(req.body.productSubmission)
+    console.log(productSubmission)
+    console.log(productSubmission.products)
+    for(const submission of productSubmission.products){
+        const createQuery = `INSERT INTO bundle_products_data (bundle_product_id, bundle_id) VALUES(${submission}, ${req.params.id});`;
+        const sendQuery = database.query(createQuery);
+        sendQuery.then(function(result){
+            console.log('Submission Successful!')
+        });
+    }
+    res.redirect('/bundle-join/')  
+})
 
 module.exports = router;

@@ -36,18 +36,15 @@ router.post('/', (req,res) => {
 })
 
 router.post('/:id', (req,res) => {
-    console.log(req.body);
-    const productSubmission = JSON.parse(req.body.productSubmission)
-    console.log(productSubmission)
-    console.log(productSubmission.products)
+    const productSubmission = JSON.parse(req.body.productSubmission);
     for(const submission of productSubmission.products){
         const createQuery = `INSERT INTO accessory_group_product_data (product_id, group_id) VALUES(${submission}, ${req.params.id});`;
         const sendQuery = database.query(createQuery);
         sendQuery.then(function(result){
-            console.log('Submission Successful!')
+            console.log('Submission Successful!');
         });
     }
-    res.redirect('/accessory-join/')  
+    res.redirect('/accessory-join/');
 })
 
 module.exports = router;

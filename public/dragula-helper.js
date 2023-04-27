@@ -1,17 +1,15 @@
 const submitJoin = () => {
-    const products = document.querySelector('#col-1').querySelectorAll('li');
+    const products = document.querySelector('#col-1').querySelectorAll('.product');
     let productStr = '{"products": [';
+
     for(const [i, product] of products.entries()){
-        if(product.getAttribute('data-id') === 'ignore') {
-            continue;
-        }
         productStr += product.getAttribute('data-id');
         if(i !== products.length - 1){
             productStr += ",";
         }
     }
     productStr += ']}';
-    console.log(productStr);
+    
     let hiddenField = document.getElementById('product-submission');
     hiddenField.setAttribute('value', productStr)
     return true;
