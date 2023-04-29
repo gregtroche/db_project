@@ -37,13 +37,25 @@ router.post('/', (req,res) => {
 
 router.post('/:id', (req,res) => {
     const productSubmission = JSON.parse(req.body.productSubmission);
-    for(const submission of productSubmission.products){
-        const createQuery = `INSERT INTO accessory_group_product_data (product_id, group_id) VALUES(${submission}, ${req.params.id});`;
-        const sendQuery = database.query(createQuery);
-        sendQuery.then(function(result){
-            console.log('Submission Successful!');
-        });
+    let createQuery = `DELETE FROM accessory_group_product_data WHERE group_id =  ${req.params.id}; INSERT INTO accessory_group_product_data (product_id, group_id) VALUES`;
+    for(const [i, submission] of productSubmission.products.entries()){
+        createQuery += `(${submission}, ${req.params.id})`;
+        if(i !== productSubmission.products.length - 1) {
+            createQuery += ','
+        }
     }
+    createQuery += ';';
+    const sendQuery = database.query(createQuery);
+    sendQuery.then(function(result){
+        console.log('Submission Successful!');
+    });
+    // for(const submission of productSubmission.products){
+    //     const createQuery = `INSERT INTO accessory_group_product_data (product_id, group_id) VALUES(${submission}, ${req.params.id});`;
+        // const sendQuery = database.query(createQuery);
+        // sendQuery.then(function(result){
+        //     console.log('Submission Successful!');
+        // });
+    // }
     res.redirect('/accessory-join/');
 })
 
