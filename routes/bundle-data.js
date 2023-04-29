@@ -26,7 +26,7 @@ router.post('/', (req,res) => {
     }
 
     else if(req.body.submissionType === 'delete'){ 
-        const deleteQuery = `DELETE FROM bundle_data WHERE id=${req.body.bundleId};`;
+        const deleteQuery = `CALL delete_bundle(id=${req.body.bundleId});`;
         const deleteItem = database.query(deleteQuery);
         deleteItem.then(function(result){
             console.log('Row Successfully Deleted!')
