@@ -71,3 +71,21 @@ BEGIN
 END;
 $$;
 ```
+
+### Delete School
+Loops through events containing the school ID and calls the `delete_event` stored procedure, and finally deletes the school itself.
+
+```sql
+CREATE OR REPLACE PROCEDURE delete_school(IN school_id_arg integer)
+LANGUAGE plpgsql
+AS $$
+DECLARE f record;
+BEGIN
+    FOR f IN SELECT id FROM events WHERE school_id = school_id_arg
+    LOOP
+        CALL delete_event(f.id);
+    END LOOP;
+    DELETE FROM schools WHERE id = school_id_arg;
+END;
+$$;
+```

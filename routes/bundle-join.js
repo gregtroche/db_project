@@ -40,13 +40,25 @@ router.post('/:id', (req,res) => {
     const productSubmission = JSON.parse(req.body.productSubmission)
     console.log(productSubmission)
     console.log(productSubmission.products)
-    for(const submission of productSubmission.products){
-        const createQuery = `INSERT INTO bundle_products_data (bundle_product_id, bundle_id) VALUES(${submission}, ${req.params.id});`;
-        const sendQuery = database.query(createQuery);
-        sendQuery.then(function(result){
-            console.log('Submission Successful!')
-        });
+    // for(const submission of productSubmission.products){
+    //     const createQuery = `INSERT INTO bundle_products_data (bundle_product_id, bundle_id) VALUES(${submission}, ${req.params.id});`;
+    //     const sendQuery = database.query(createQuery);
+    //     sendQuery.then(function(result){
+    //         console.log('Submission Successful!')
+    //     });
+    // }
+    let createQuery = `INSERT INTO bundle_products_data (bundle_product_id, bundle_id) VALUES`;
+    
+
+    for(const [i,submission] of productSubmission.products.entries()){
+        createQuery += `(${submission}, ${req.params.id})`;
+        console.log(submission);
+        if(i !== productSubmission.products.length - 1) {
+            createQuery += ','
+        }
     }
+    createQuery += ';'
+    console.log(createQuery);
     res.redirect('/bundle-join/')  
 })
 
