@@ -50,3 +50,24 @@ BEGIN
 END;
 $$;
 ```
+
+### Delete Event
+Deletes an event by cascading all the subsequent tables (`shipping, bundle_data, bundle_products_data, accessory_group_data, accessory_group_product_data`)
+```sql
+CREATE OR REPLACE PROCEDURE delete_event(IN event_id_arg integer)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    DELETE FROM shipping WHERE event_id = event_id_arg;
+    DELETE FROM accessory_group_product_data WHERE group_id IN (
+        SELECT id FROM accessory_group_data WHERE event_id = event_id_arg
+    );
+    DELETE FROM accessory_group_data WHERE event_id = event_id_arg;
+    DELETE FROM bundle_products_data WHERE bundle_id IN (
+        SELECT id FROM bundle_data WHERE event_id = event_ID_arg
+    );
+    DELETE FROM bundle_data WHERE event_id = event_id_arg;
+    DELETE FROM events where id = event_id_arg;
+END;
+$$;
+```
