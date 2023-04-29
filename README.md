@@ -89,3 +89,24 @@ BEGIN
 END;
 $$;
 ```
+
+## Triggers
+### Delete Duplicate Bundle Products
+Deletes duplicate bundle products from the join table on insert
+```sql
+CREATE OR REPLACE FUNCTION delete_duplicate_bundle_products_data()
+RETURNS TRIGGER AS $$
+BEGIN
+  DELETE FROM bundle_products_data
+  WHERE bundle_id = NEW.bundle_id
+    AND bundle_product_id = NEW.bundle_product_id
+    AND ctid <> NEW.ctid;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER delete_duplicate_bundle_products_data_trigger
+AFTER INSERT ON bundle_products_data
+FOR EACH ROW
+EXECUTE FUNCTION delete_duplicate_bundle_products_data();
+```
