@@ -9,7 +9,8 @@ const   express = require('express'),
         bundleJoin = require('./routes/bundle-join'),
         accessoryGroups = require('./routes/accessory-groups'),
         accessoryProducts = require('./routes/accessory-products'),
-        accessoryJoin = require('./routes/accessory-join');
+        accessoryJoin = require('./routes/accessory-join'),
+        views = require('./routes/views');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -27,6 +28,7 @@ app.use('/accessory-groups/', accessoryGroups);
 app.use('/accessory-products/', accessoryProducts);
 app.use('/accessory-join/', accessoryJoin);
 app.use('/bundle-join/', bundleJoin);
+app.use('/views/', views);
 
 app.listen(PORT, () => {
     console.log(`Server Running at: http://localhost:${PORT}/`);

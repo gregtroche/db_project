@@ -1,0 +1,30 @@
+<%- include ('../partials/header') %>
+
+<div class="container">
+    <h1>Schools / Active Events View</h1>
+    <p>This is a view that shows all the school / event combos where the event is active</p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>School Name</th>
+                <th>Event Name</th>
+                <th>Ceremony Date</th>
+                <th>Website Open Date</th>
+                <th>Website Close Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = 0; i < view.rows.length; i++) { %>
+                <tr>
+                    <td><%= view.rows[i].school_name %></td>
+                    <td><%= view.rows[i].event_name %></td>
+                    <td><%= view.rows[i].ceremony_date.toString().split("00:00:00")[0] %></td>
+                    <td><%= view.rows[i].website_open_date.toString().split("00:00:00")[0] %></td>
+                    <td><%= view.rows[i].website_close_date.toString().split("00:00:00")[0] %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+<%- include('../partials/footer') %>

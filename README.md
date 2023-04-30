@@ -123,3 +123,35 @@ BEFORE UPDATE ON shipping
 FOR EACH ROW
 EXECUTE FUNCTION shipping_update_last_updated_column();
 ```
+
+## Views
+### Active Events
+Displays all the school/event combos with events that are marked as active
+```sql
+CREATE VIEW active_events AS
+SELECT s.name as school_name,
+       e.name as event_name,
+       e.ceremony_date as ceremony_date,
+       e.website_open_date as website_open_date,
+       e.website_close_date as website_close_date
+FROM schools as s
+INNER JOIN events e on s.id = e.school_id
+WHERE e.active=true;
+```
+
+### Ship to school
+Displays all the school/event combos with shipping profiles marked as ship to school
+```sql
+CREATE VIEW ship_to_school AS
+SELECT s.name as school_name,
+       e.name as event_name,
+       sh.cost as cost,
+       sh.address as address,
+       sh. city as city,
+       sh.state as state,
+       sh.zip as zip
+FROM schools as s
+INNER JOIN events e on s.id = e.school_id
+INNER JOIN shipping sh on sh.event_id = e.id
+WHERE sh.ship_to_school = true;
+```
