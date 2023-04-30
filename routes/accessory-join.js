@@ -49,13 +49,6 @@ router.post('/:id', (req,res) => {
     sendQuery.then(function(result){
         console.log('Submission Successful!');
     });
-    // for(const submission of productSubmission.products){
-    //     const createQuery = `INSERT INTO accessory_group_product_data (product_id, group_id) VALUES(${submission}, ${req.params.id});`;
-        // const sendQuery = database.query(createQuery);
-        // sendQuery.then(function(result){
-        //     console.log('Submission Successful!');
-        // });
-    // }
     res.redirect('/accessory-join/');
 })
 

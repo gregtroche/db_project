@@ -34,8 +34,9 @@ router.post('/', (req,res) => {
     }
 
     else if(req.body.submissionType === 'update'){
-        const updateQuery = `UPDATE events SET name='${req.body.eventName}', school_id=${req.body.schoolId}, ceremony_date='${req.body.ceremonyDate}', website_open_date='${req.body.websiteOpenDate}', website_close_date='${req.body.websiteOpenDate}', active=${req.body.active}, last_updated=now() WHERE id=${req.body.eventId};`;
+        const updateQuery = `UPDATE events SET name='${req.body.eventName}', school_id=${req.body.schoolId}, ceremony_date='${req.body.ceremonyDate}', website_open_date='${req.body.websiteOpenDate}', website_close_date='${req.body.websiteCloseDate}', active=${req.body.active} WHERE id=${req.body.eventId};`;
         const updateItem = database.query(updateQuery);
+        console.log(updateQuery);
         updateItem.then(function(result){
             console.log('Row Successfully Updated!')
         });
