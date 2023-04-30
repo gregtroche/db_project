@@ -89,3 +89,37 @@ BEGIN
 END;
 $$;
 ```
+## Triggers
+### Update Last Updated (Event)
+Updates the last updated column on event update.
+```sql
+CREATE OR REPLACE FUNCTION update_last_updated_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.last_updated := NOW();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_events_last_updated
+BEFORE UPDATE ON events
+FOR EACH ROW
+EXECUTE FUNCTION update_last_updated_column();
+```
+
+### Update Last Updated (Shipping)
+Updates the last updated column on shipping update.
+```sql
+CREATE OR REPLACE FUNCTION shipping_update_last_updated_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.last_updated := NOW();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER shipping_update_events_last_updated
+BEFORE UPDATE ON shipping
+FOR EACH ROW
+EXECUTE FUNCTION shipping_update_last_updated_column();
+```
