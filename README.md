@@ -1,5 +1,8 @@
 # Additional Database Documentation
 
+## ER Diagram
+ER diagram can be found in the repository root directory under the name [er_diagram.png](er_diagram.png)
+
 ## Stored Procedures
 ### Delete Accessory Data
 Deletes an accessory product from the join table before deleting it from the product table.
@@ -154,4 +157,19 @@ FROM schools as s
 INNER JOIN events e on s.id = e.school_id
 INNER JOIN shipping sh on sh.event_id = e.id
 WHERE sh.ship_to_school = true;
+```
+
+## Function 
+## Days Until
+Takes a date argument and calculates the number of days from now until then. Used to calculate days until a ceremony. 
+```sql
+CREATE OR REPLACE FUNCTION days_until(input_date DATE)
+RETURNS INTEGER AS $$
+DECLARE
+    result INTEGER;
+BEGIN
+    SELECT (DATE(input_date) - DATE(NOW())) INTO result;
+    RETURN result;
+END;
+$$ LANGUAGE plpgsql;
 ```

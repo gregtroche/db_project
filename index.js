@@ -10,14 +10,12 @@ const   express = require('express'),
         accessoryGroups = require('./routes/accessory-groups'),
         accessoryProducts = require('./routes/accessory-products'),
         accessoryJoin = require('./routes/accessory-join'),
+        home = require('./routes/home'),
+        reports = require('./routes/reports'),
         views = require('./routes/views');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-
-app.get('/', (req, res) => {
-    res.send({ 'message':'Endpoint Working' });
-});
 
 app.use('/schools/', schools);
 app.use('/events/', events);
@@ -29,6 +27,8 @@ app.use('/accessory-products/', accessoryProducts);
 app.use('/accessory-join/', accessoryJoin);
 app.use('/bundle-join/', bundleJoin);
 app.use('/views/', views);
+app.use('/reports/', reports);
+app.use('/', home);
 
 app.listen(PORT, () => {
     console.log(`Server Running at: http://localhost:${PORT}/`);

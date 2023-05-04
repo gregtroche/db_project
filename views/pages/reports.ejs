@@ -1,0 +1,19 @@
+<%- include ('../partials/header') %>
+
+<div class="container">
+    <h1>Reports</h1>
+    <div class="col-md-4 rounded bg-light p-3">
+        <form action ="" method="POST">
+            <legend>Please Select a School to View the Event Report</legend>
+            <label for="school-id">School:</label>
+            <select name="schoolId" id="school-id" required>
+                <% for(let i = 0; i < schools.rows.length; i++) { %>
+                    <option value="<%= schools.rows[i].id %>"><%= schools.rows[i].id %>: <%= schools.rows[i].name %></option>
+                <% } %>
+            </select>
+            <input class="btn btn-primary mt-3" type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
