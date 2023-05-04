@@ -8,16 +8,20 @@
             <thead>
                 <tr>
                     <th>Event Name</th>
-                    <th>Accessory Group Name</th>
-                    <th>Total Accessory Price</th>
+                    <th>Website Close Date</th>
+                    <th>Days Until Website Close</th>
+                    <th>Ceremony Date</th>
+                    <th>Days Until Ceremony</th>
                 </tr>
             </thead>
             <tbody>
                 <% for(let i = 0; i < report.rows.length; i++) { %>
                     <tr>
                         <td><%= report.rows[i].event_name %></td>
-                        <td><%= report.rows[i].accessory_group_name %></td>
-                        <td><%= report.rows[i].total_accessory_price %></td>
+                        <td><%= report.rows[i].website_close_date.toString().split("00:00")[0] %></td>
+                        <td><%= report.rows[i].website_close_time >= 0 ? report.rows[i].website_close_time : 'Closed'  %></td>
+                        <td><%= report.rows[i].ceremony_date.toString().split("00:00")[0] %></td>
+                        <td><%= report.rows[i].days_until_ceremony >= 0 ? report.rows[i].days_until_ceremony : 'Ceremony Over' %></td>
                     </tr>
                 <% } %>
             </tbody>
