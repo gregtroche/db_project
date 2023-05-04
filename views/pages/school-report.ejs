@@ -2,6 +2,7 @@
 
 <div class="container">
     <h1>Total Price of Accessory Group Items</h1>
+    <% try { %>
     <h2><%= report.rows[0].school_name %></h2>
     <div class="rounded bg-light p-3">
         <table class="table table-striped">
@@ -23,6 +24,9 @@
             </tbody>
         </table>
     </div>
+    <% } catch { %>
+    <h2>No data available</h2>
+    <% } %>
 </div>
 
 <%- include('../partials/footer') %>

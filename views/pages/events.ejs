@@ -16,13 +16,11 @@
                                     </div>
                                     <div class="col">
                                         <label for="create-school-id">School ID:</label><br />
-                                        <input type="number" id="create-school-id" name="schoolId" required><br />
-                                    </div>
-                                    <div class="col">
-                                        <input type="radio" id="create-is-active" name="active" value="true" required>
-                                        <label for="create-is-active">Active</label><br />
-                                        <input type="radio" id="create-is-inactive" name="active" value="false">
-                                        <label for="create-is-inactive">Inactive</label><br />  
+                                        <select name="schoolId" id="create-event-id" required>
+                                            <% for(let i = 0; i < schoolData.length; i++) { %>
+                                                <option value="<%= schoolData[i].id %>"><%= schoolData[i].id %>: <%= schoolData[i].name %></option>
+                                            <% } %>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="row mt-2 mb-2">
@@ -37,6 +35,14 @@
                                     <div class="col">
                                         <label for="create-website-close-date">Website Close:</label><br />
                                         <input type="date" id="create-website-close-date" name="websiteCloseDate" required><br />
+                                    </div>
+                                </div>
+                                <div class="row mt-2 mb-2">
+                                    <div class="col">
+                                        <input type="radio" id="create-is-active" name="active" value="true" required>
+                                        <label for="create-is-active">Active</label><br />
+                                        <input type="radio" id="create-is-inactive" name="active" value="false">
+                                        <label for="create-is-inactive">Inactive</label><br />  
                                     </div>
                                 </div>
                                 <input type="hidden" name="submissionType" value="create">
@@ -56,8 +62,8 @@
                                 <div class="col">
                                     <label for="update-event-id">Event ID:</label><br />
                                     <select name="eventId" id="update-event-id" required>
-                                        <% for(let i = 0; i < events.rows.length; i++) { %>
-                                            <option value="<%= events.rows[i].id %>"><%= events.rows[i].id %></option>
+                                        <% for(let i = 0; i < eventData.length; i++) { %>
+                                            <option value="<%= eventData[i].id %>"><%= eventData[i].id %></option>
                                         <% } %>
                                     </select>
                                 </div>
@@ -114,20 +120,20 @@
             </tr>
         </thead>
         <tbody>
-            <% for(let i = 0; i < events.rows.length; i++) { %>
+            <% for(let i = 0; i < eventData.length; i++) { %>
                 <tr>
-                    <td><%= events.rows[i].id %></td>
-                    <td><%= events.rows[i].school_id %></td>
-                    <td><%= events.rows[i].name %></td>
-                    <td><%= events.rows[i].active %></td>
-                    <td><%= events.rows[i].ceremony_date.toString().split("00:00")[0] %></td>
-                    <td><%= events.rows[i].website_open_date.toString().split("00:00")[0] %></td>
-                    <td><%= events.rows[i].website_close_date.toString().split("00:00")[0] %></td>
-                    <td><%= events.rows[i].last_updated.toString().split("GMT")[0] %></td>
+                    <td><%= eventData[i].school_id %></td>
+                    <td><%= eventData[i].name %></td>
+                    <td><%= eventData[i].id %></td>
+                    <td><%= eventData[i].active %></td>
+                    <td><%= eventData[i].ceremony_date.toString().split("00:00")[0] %></td>
+                    <td><%= eventData[i].website_open_date.toString().split("00:00")[0] %></td>
+                    <td><%= eventData[i].website_close_date.toString().split("00:00")[0] %></td>
+                    <td><%= eventData[i].last_updated.toString().split("GMT")[0] %></td>
                     <td>
                         <form action="" method="POST">
                             <input type="hidden" name="submissionType" value="delete">
-                            <input type="hidden" name="eventId" value="<%- events.rows[i].id %>">
+                            <input type="hidden" name="eventId" value="<%- eventData[i].id %>">
                             <input class="btn btn-danger" type="submit" value="Delete">
                         </form>
                     </td>
