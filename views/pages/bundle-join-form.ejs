@@ -5,7 +5,7 @@
         <div class="col-md-4 rounded bg-light p-3">
             <form action ="" method="POST">
                 <legend>Please Select A Bundle to Assign Products</legend>
-                <label for="bundle-id-update">Accessory Group:</label>
+                <label for="bundle-id-update">Bundle:</label>
                 <select name="bundleId" id="bundle-id" required>
                     <% for(let i = 0; i < bundle_data.rows.length; i++) { %>
                         <option value="<%= bundle_data.rows[i].id %>"><%= bundle_data.rows[i].id %>: <%= bundle_data.rows[i].name %></option>
