@@ -8,14 +8,6 @@ router.use(bodyParser.urlencoded({
     extended: true
 }));
 
-// router.get('/', (req, res) => {
-//     const readAllQuery = 'SELECT * FROM accessory_group_data ORDER BY event_id, name';
-//     const data = database.query(readAllQuery);
-//     data.then(function(result){
-//         res.render('../views/pages/accessory-groups', {accessory_data: result})
-//     });
-// })
-
 router.get('/', (req, res) => {
     let dbData = {}
     let readAllQuery = 'SELECT * FROM accessory_group_data ORDER BY event_id, name';
@@ -30,8 +22,6 @@ router.get('/', (req, res) => {
         })
     });
 })
-
-
 
 router.post('/', (req,res) => {
     if(req.body.submissionType === 'create'){ 
