@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 router.post('/', (req,res) => {
     if(req.body.buttonReport === 'Accessory Pricing') {
         res.redirect(`accessory-report/${req.body.schoolId}`);
-    } else if (req.body.buttonReport === 'Days to Graduation') {
+    } else if (req.body.buttonReport === 'Important Dates') {
         res.redirect(`important-dates/${req.body.schoolId}`);
     }
 })
