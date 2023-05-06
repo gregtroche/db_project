@@ -9,10 +9,17 @@ router.use(bodyParser.urlencoded({
 }));
 
 router.get('/', (req, res) => {
-    const readAllQuery = 'SELECT * FROM bundle_data ORDER BY event_id, name';
-    const data = database.query(readAllQuery);
+    let dbData = {};
+    let readAllQuery = 'SELECT * FROM bundle_data ORDER BY event_id, name';
+    let data = database.query(readAllQuery);
     data.then(function(result){
-        res.render('../views/pages/bundle-data', {bundle_data: result})
+        dbData['bundleData'] = result.rows;
+        readAllQuery = 'SELECT name, id FROM events ORDER BY id;';
+        data = database.query(readAllQuery);
+        data.then(function(result){
+            dbData['eventData'] = result.rows;
+            res.render('../views/pages/bundle-data', dbData);
+        })
     });
 })
 

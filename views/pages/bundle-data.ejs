@@ -21,7 +21,11 @@
                                 <div class="row mt-2 mb-2">
                                     <div class="col">
                                         <label for="create-event-id">Event ID:</label><br />
-                                        <input type="text" id="create-event-id" name="eventId" required><br />
+                                        <select name="eventId" id="create-event-id" required>
+                                            <% for(let i = 0; i < eventData.length; i++) { %>
+                                                <option value="<%= eventData[i].id %>"><%= eventData[i].id %>: <%= eventData[i].name %></option> 
+                                            <% } %> 
+                                        </select>
                                     </div>
                                     <div class="col">
                                         <label for="create-bundle-price">Bundle Price</label><br />
@@ -45,8 +49,8 @@
                                 <div class="col">
                                     <label for="bundle-id-update">ID:</label><br />
                                     <select name="bundleId" id="bundle-id-update" required>
-                                        <% for(let i = 0; i < bundle_data.rows.length; i++) { %>
-                                            <option value="<%= bundle_data.rows[i].id %>"><%= bundle_data.rows[i].id %></option>
+                                        <% for(let i = 0; i < bundleData.length; i++) { %>
+                                            <option value="<%= bundleData[i].id %>"><%= bundleData[i].id %></option>
                                         <% } %>
                                     </select>
                                 </div>
@@ -92,18 +96,18 @@
             </tr>
         </thead>
         <tbody>
-            <% for(let i = 0; i < bundle_data.rows.length; i++) { %>
+            <% for(let i = 0; i < bundleData.length; i++) { %>
                 <tr>
-                    <td><%= bundle_data.rows[i].id %></td>
-                    <td><%= bundle_data.rows[i].name %></td>
-                    <td><%= bundle_data.rows[i].image %></td>
-                    <td><%= bundle_data.rows[i].event_id %></td>
-                    <td><%= bundle_data.rows[i].price %></td>
-                    <td><%= bundle_data.rows[i].last_updated.toString().split("GMT")[0] %></td>
+                    <td><%= bundleData[i].id %></td>
+                    <td><%= bundleData[i].name %></td>
+                    <td><%= bundleData[i].image %></td>
+                    <td><%= bundleData[i].event_id %></td>
+                    <td><%= bundleData[i].price %></td>
+                    <td><%= bundleData[i].last_updated.toString().split("GMT")[0] %></td>
                     <td>
                         <form action="" method="POST">
                             <input type="hidden" name="submissionType" value="delete">
-                            <input type="hidden" name="bundleId" value="<%- bundle_data.rows[i].id %>">
+                            <input type="hidden" name="bundleId" value="<%- bundleData[i].id %>">
                             <input class="btn btn-danger" type="submit" value="Delete">
                         </form>
                     </td>

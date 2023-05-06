@@ -15,7 +15,11 @@
                                     </div>
                                     <div class="col">
                                         <label for="create-event-id">Event ID:</label><br />
-                                        <input type="number" id="create-event-id" name="eventId" required><br />
+                                        <select name="eventId" id="create-event-id" required>
+                                            <% for(let i = 0; i < eventData.length; i++) { %>
+                                                <option value="<%= eventData[i].id %>"><%= eventData[i].id %>: <%= eventData[i].name %></option>
+                                            <% } %>
+                                        </select>
                                     </div>
                                     <div class="col">
                                         <input type="radio" id="create-ship-to-school" name="shipToSchool" value="true" required>
@@ -64,8 +68,8 @@
                                 <div class="col">
                                     <label for="shipping-id-update">ID:</label><br />
                                     <select name="shippingId" id="shipping-id-update" required>
-                                        <% for(let i = 0; i < shipping.rows.length; i++) { %>
-                                            <option value="<%= shipping.rows[i].id %>"><%= shipping.rows[i].id %></option>
+                                        <% for(let i = 0; i < shippingData.length; i++) { %>
+                                            <option value="<%= shippingData[i].id %>"><%= shippingData[i].id %></option>
                                         <% } %>
                                     </select>
                                 </div>
@@ -131,21 +135,21 @@
             </tr>
         </thead>
         <tbody>
-            <% for(let i = 0; i < shipping.rows.length; i++) { %>
+            <% for(let i = 0; i < shippingData.length; i++) { %>
                 <tr>
-                    <td><%= shipping.rows[i].id %></td>
-                    <td><%= shipping.rows[i].event_id %></td>
-                    <td><%= shipping.rows[i].cost %></td>
-                    <td><%= shipping.rows[i].address %></td>
-                    <td><%= shipping.rows[i].city %></td>
-                    <td><%= shipping.rows[i].state %></td>
-                    <td><%= shipping.rows[i].zip %></td>
-                    <td><%= shipping.rows[i].ship_to_school %></td>
-                    <td><%= shipping.rows[i].last_updated.toString().split("GMT")[0] %></td>
+                    <td><%= shippingData[i].id %></td>
+                    <td><%= shippingData[i].event_id %></td>
+                    <td><%= shippingData[i].cost %></td>
+                    <td><%= shippingData[i].address %></td>
+                    <td><%= shippingData[i].city %></td>
+                    <td><%= shippingData[i].state %></td>
+                    <td><%= shippingData[i].zip %></td>
+                    <td><%= shippingData[i].ship_to_school %></td>
+                    <td><%= shippingData[i].last_updated.toString().split("GMT")[0] %></td>
                     <td>
                         <form action="" method="POST">
                             <input type="hidden" name="submissionType" value="delete">
-                            <input type="hidden" name="shippingId" value="<%- shipping.rows[i].id %>">
+                            <input type="hidden" name="shippingId" value="<%- shippingData[i].id %>">
                             <input class="btn btn-danger" type="submit" value="Delete">
                         </form>
                     </td>

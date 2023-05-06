@@ -15,7 +15,11 @@
                                     </div>
                                     <div class="col">
                                         <label for="create-event-id">Event ID:</label><br />
-                                        <input type="number" id="create-event-id" name="accessoryGroupEventId" required><br />
+                                        <select name="accessoryGroupEventId" id="create-event-id" required>
+                                            <% for(let i = 0; i < eventData.length; i++) { %>
+                                                <option value="<%= eventData[i].id %>"><%= eventData[i].id %>: <%= eventData[i].name %></option>
+                                            <% } %>
+                                        </select>
                                     </div>
                                 </div>
                                 <input type="hidden" name="submissionType" value="create">
@@ -35,8 +39,8 @@
                                 <div class="col">
                                     <label for="accessory-group-id-update">ID:</label><br />
                                     <select name="accessoryGroupId" id="accessory-group-id-update" required>
-                                        <% for(let i = 0; i < accessory_data.rows.length; i++) { %>
-                                            <option value="<%= accessory_data.rows[i].id %>"><%= accessory_data.rows[i].id %></option>
+                                        <% for(let i = 0; i < accessoryData.length; i++) { %>
+                                            <option value="<%= accessoryData[i].id %>"><%= accessoryData[i].id %></option>
                                         <% } %>
                                     </select>
                                 </div>
@@ -67,16 +71,16 @@
             </tr>
         </thead>
         <tbody>
-            <% for(let i = 0; i < accessory_data.rows.length; i++) { %>
+            <% for(let i = 0; i < accessoryData.length; i++) { %>
                 <tr>
-                    <td><%= accessory_data.rows[i].id %></td>
-                    <td><%= accessory_data.rows[i].name %></td>
-                    <td><%= accessory_data.rows[i].event_id %></td>
-                    <td><%= accessory_data.rows[i].last_updated.toString().split("GMT")[0] %></td>
+                    <td><%= accessoryData[i].id %></td>
+                    <td><%= accessoryData[i].name %></td>
+                    <td><%= accessoryData[i].event_id %></td>
+                    <td><%= accessoryData[i].last_updated.toString().split("GMT")[0] %></td>
                     <td>
                         <form action="" method="POST">
                             <input type="hidden" name="submissionType" value="delete">
-                            <input type="hidden" name="accessoryGroupId" value="<%- accessory_data.rows[i].id %>">
+                            <input type="hidden" name="accessoryGroupId" value="<%- accessoryData[i].id %>">
                             <input class="btn btn-danger" type="submit" value="Delete">
                         </form>
                     </td>
